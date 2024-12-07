@@ -97,7 +97,7 @@ function typeText(text) {
   }
 
 function playTypingSound() {
-    const audio = new Audio("Retro_Single_v1_wav.wav");
+    const audio = new Audio("Retro_Single_v1_wav.mp3");
     audio.volume = 0.3;
     audio.play();  
 }
