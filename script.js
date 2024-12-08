@@ -39,7 +39,7 @@ const scenes = [
       background: "background3.jpg",
       character: "",
       choices: [
-        { text: "..."},
+        { text: "...", next: 0 },
       ],
     },
     { /*4*/
@@ -66,7 +66,7 @@ const scenes = [
       background: "background4.jpg",
       character: "character1.png",
       choices: [
-        { text: "..."},
+        { text: "...", next: 0 },
       ],
     },
     { /*7*/
@@ -102,7 +102,7 @@ const scenes = [
       background: "background4.jpg",
       character: "character1.png",
       choices: [
-        { text: ""},
+        { text: "", next: 0 },
       ],
     },
     { /*11*/
@@ -118,7 +118,7 @@ const scenes = [
       background: "background4.jpg",
       character: "character1.png",
       choices: [
-        { text: "..."},
+        { text: "...", next: 0 },
       ],
     },
     { /**/
@@ -126,7 +126,7 @@ const scenes = [
       background: "background4.jpg",
       character: "character1.png",
       choices: [
-        { text: ""},
+        { text: "", next: 0 },
       ],
     },
     
@@ -227,10 +227,15 @@ function typeText(htmlString) {
   
   
 
+const typingAudio = new Audio("Retro_Single_v1_wav.mp3");
+typingAudio.volume = 0.3;
+
+// Improved playTypingSound to reuse audio
 function playTypingSound() {
-    const audio = new Audio("Retro_Single_v1_wav.mp3");
-    audio.volume = 0.3;
-    audio.play();  
+  if (!typingAudio.paused) {
+    typingAudio.currentTime = 0; // Reset playback if already playing
+  }
+  typingAudio.play();
 }
 
 // Show Choices

@@ -5,6 +5,6 @@ document.getElementById('start-button').addEventListener('click', function() {
     // Show the game content
     document.getElementById('game').style.display = 'block';
     
-    // You can also initialize any game logic here, if needed
+    
 });
   
