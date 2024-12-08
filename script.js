@@ -7,7 +7,7 @@ const choicesEl = document.getElementById("choice-box");
 // Scenes
 const scenes = [
     {
-      text: "A girl with long white hair stops by your locker between classes.             You've never seen her before,         although it *is* your first day back after a month-long suspension.",
+      text: "                                          A girl with long white hair stops by your locker between classes.                      You've never seen her before,                    but then again it <em>is</em> your first day back after a month-long suspension.",
       background: "",
       character: "",
       choices: [
@@ -15,7 +15,7 @@ const scenes = [
       ], 
     },
     {
-      text: "Hi!              I'm new here,          can you help me get to class?                  Oh,            sorry,           but what's your name?",
+      text: "Hi!                      I'm new here,               can you help me get to class?                  Oh,                sorry,           but what's your name?",
       background: "background1.jpg",
       character: "character1.png",
       choices: [
@@ -25,7 +25,7 @@ const scenes = [
       ],
     },
     {
-      text: "Oh,           that's a lovely name!                  You can call me Indra,              by the way.",
+      text: "Oh,           that's a lovely name!                  You can call me <strong>Indra</strong>,              by the way.",
       background: "background2.jpg",
       character: "character1.png",
       choices: [
@@ -74,27 +74,75 @@ async function loadScene(sceneIndex) {
 }
 
 // Typing Effect
-function typeText(text) {
+function typeText(htmlString) {
     return new Promise((resolve) => {
-      let i = 0;
-      textEl.textContent = "";
-      const interval = setInterval(() => {
-        const currentChar = text[i];
-        textEl.textContent += currentChar;
+      const parser = new DOMParser();
+      const parsedHtml = parser.parseFromString(htmlString, "text/html");
+      const nodes = Array.from(parsedHtml.body.childNodes);
   
-        // Play the typing sound only every other character, and skip spaces
-        if (i % 2 === 0 && currentChar !== " ") {
-          playTypingSound();
+      textEl.innerHTML = ""; // Clear the content of the text element
+      let currentIndex = 0;
+      let typingInterval;
+  
+      // Function to handle typing of nodes
+      function typeNode(node) {
+        if (currentIndex >= nodes.length) {
+          resolve(); // Resolve when all nodes are processed
+          return;
         }
   
-        i++;
-        if (i >= text.length) {
-          clearInterval(interval);
-          resolve();  // Resolve the promise when typing is done
+        const currentNode = nodes[currentIndex];
+        currentIndex++;
+  
+        if (currentNode.nodeType === Node.TEXT_NODE) {
+          let text = currentNode.textContent;
+          let i = 0;
+  
+          typingInterval = setInterval(() => {
+            const currentChar = text[i];
+            textEl.innerHTML += currentChar;
+  
+            if (i % 2 === 0 && currentChar !== " ") {
+              playTypingSound();
+            }
+  
+            i++;
+            if (i >= text.length) {
+              clearInterval(typingInterval);
+              typeNode(); // Move to the next node
+            }
+          }, 30);
+        } else if (currentNode.nodeType === Node.ELEMENT_NODE) {
+          const elementClone = currentNode.cloneNode(true);
+          textEl.appendChild(elementClone);
+          typeNode(); // Move to the next node
         }
-      }, 30);
+      }
+  
+      typeNode(); // Start typing the first node
+  
+      // Handle user input to skip typing
+      function showFullText() {
+        if (textEl.innerHTML.length >= 10) {
+            clearInterval(typingInterval); // Stop the typing effect
+            textEl.innerHTML = htmlString; // Replace with full text
+            resolve(); // Resolve promise to allow progress
+        }
+      }
+  
+      // Event listeners for user interaction
+      document.addEventListener('click', showFullText);  // Click to skip typing
+      document.addEventListener('keydown', function(event) {
+        if (event.key === ' ') {  // Spacebar to skip typing
+          showFullText();
+        }
+      });
     });
   }
+  
+  
+  
+  
 
 function playTypingSound() {
     const audio = new Audio("Retro_Single_v1_wav.mp3");
@@ -124,5 +172,6 @@ function showChoices(choices) {
   });
 }
 
-// Start the game
-loadScene(0);
+document.getElementById('start-button').addEventListener('click', function() {
+  loadScene(0);
+});
