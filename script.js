@@ -206,7 +206,7 @@ function typeText(htmlString) {
   
       // Handle user input to skip typing
       function showFullText() {
-        if (textEl.innerHTML.length >= 10) {
+        if (textEl.innerHTML.length >= 3) {
             clearInterval(typingInterval); // Stop the typing effect
             textEl.innerHTML = htmlString; // Replace with full text
             resolve(); // Resolve promise to allow progress
