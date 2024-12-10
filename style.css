@@ -1,103 +1,10 @@
 /* General Styles */
+/* I would like to preserve as much of the original styling aesthetic as possible, except for what cosmetics have been suggested to adjust and what needs to be added to accomodate new features. */
 body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Press Start 2P', Arial, sans-serif; /* Retro font */
-    overflow: hidden; /* Prevent scrolling */
-  }
-#start-screen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 999;
-  font-size: 24px;
-  
-  /* Initial colors set for Blue and White theme */
-  background-color: whitesmoke; /* Blue background */
-  color: #dbb539;
-  animation: colorTransition 10s infinite alternate;
-  animation-delay: 1s;
-}
-
-/* Title Styling */
-.start-content h2 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Subtle shadow effect */
-}
-
-/* Description Styling */
-.start-content p {
-  font-size: 20px;
-  margin-bottom: 30px;
-  font-style: italic;
-}
-
-/* Start Button Styles */
-#start-button {
-  position: relative;
-  top: 30px;
-  padding: 15px 30px;
-  font-size: 22px;
-  background-color: white; /* Blue background */
-  color: #dbb539;
-  border: 3px solid #dbb539;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  animation: buttonTransition 10s infinite alternate;
-  animation-delay: 1s;
+  margin: 0;
+  padding: 0;
   font-family: 'Press Start 2P', Arial, sans-serif; /* Retro font */
-}
-
-/* Button Hover Effect */
-#start-button:hover {
-  background-color: #dbb539;
-  color: white;
-  transform: scale(1.1); /* Slight scale effect */
-  box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.7); /* Glow effect */
-}
-
-/* Keyframe Animation for Color Transition */
-@keyframes colorTransition {
-  0% {
-    background-color: whitesmoke; /* Blue background */
-    color: #dbb539;
-  }
-  50% {
-    background-color: #003366; /* Dark grey background */
-    color: black; /* Gold text */
-  }
-  100% {
-    background-color: whitesmoke; /* Blue background */
-    color: #dbb539;
-  }
-}
-
-/* Keyframe Animation for Button Transition */
-@keyframes buttonTransition {
-  0% {
-    background-color: white; /* Blue background */
-    color: #dbb539;
-    border: 3px solid #dbb539;
-  }
-  50% {
-    background-color: #3399FF; /* Gold background */
-    color: black;
-    border: 3px solid black; /* Gold border */
-  }
-  100% {
-    background-color: white; /* Blue background */
-    color: #dbb539;
-    border: 3px solid #dbb539;
-  }
+  overflow: hidden; /* Prevent scrolling */
 }
   
 /* Game Container */
@@ -111,13 +18,15 @@ body, html {
   
 /* Background Image */
 #background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 1250px 1250px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
 }
   
 /* Character Image */
@@ -133,47 +42,88 @@ body, html {
   
 /* Text Box */
 #text-box {
-    position: absolute;
-    bottom: 25%;
-    left: 15%;
-    right: 15%;
-    background: rgba(73, 94, 139, 0.9); /* Keep semi-transparent */
-    color: white;
-    padding: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.8); /* Subtle border */
-    border-radius: 5px;
-    font-size: 18px;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8); /* Text glow */
-    box-shadow: 0 0 15px rgba(73, 94, 139, 0.8); /* Add glow effect */
-    line-height: 1.5; /* Increase line spacing */
-    height: 100px;
-    max-height: 100px; /* Set a maximum height for the text box */
-    overflow-y: auto; /* Allow scrolling if content exceeds max height */
+  position: absolute;
+  bottom: 25%;
+  left: 15%;
+  right: 15%;
+  background: rgba(0, 0, 0, 0.7); /* Keep semi-transparent */
+  color: white;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Subtle border */
+  border-radius: 5px;
+  font-size: 18px;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8); /* Text glow */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Add glow effect */
+  line-height: 1.5; /* Increase line spacing */
+  height: 120px; /* Increase total height to include text-wrap */
+  max-height: 120px;
+  display: flex; /* Use flex layout to ensure proper alignment */
+  flex-direction: column; /* Stack children vertically */
 }
 
-/* Retro scrollbar styling */
-#text-box::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
+#text-wrap {
+  overflow-y: auto; /* Allow scrolling if content exceeds max height */
+  height: 120; /* Fill the available height of the parent */
+  max-height: 200px; /* Prevent exceeding parent's height */
+  padding-right: 10px; /* Avoid content overlapping scrollbar */
 }
-  
-#text-box::-webkit-scrollbar-track {
-    background: #3a3a3a; /* Dark track background */
-    border-radius: 10px; 
+
+/* Retro scrollbar styling for text-wrap */
+#text-wrap::-webkit-scrollbar {
+  width: 12px;
 }
-  
-#text-box::-webkit-scrollbar-thumb {
-    background: #7a7a7a; /* Light gray thumb */
-    border-radius: 10px;
-    border: 3px solid #3a3a3a; /* Dark border for retro effect */
+
+#text-wrap::-webkit-scrollbar-track {
+  background: #3a3a3a;
+  border-radius: 10px;
 }
-  
-#text-box::-webkit-scrollbar-thumb:hover {
-    background: #4b4b4b; /* Slightly darker thumb on hover */
+
+#text-wrap::-webkit-scrollbar-thumb {
+  background: #7a7a7a;
+  border-radius: 10px;
+  border: 3px solid #3a3a3a;
 }
-  
-#text-box::-webkit-scrollbar-thumb:active {
-    background: #353535; /* Even darker thumb when clicked */
+
+#text-wrap::-webkit-scrollbar-thumb:hover {
+  background: #4b4b4b;
 }
+
+#text-wrap::-webkit-scrollbar-thumb:active {
+  background: #353535;
+}
+
+/* Name Tab Styling */
+#name-tab {
+  position: absolute;
+  top: -35px; /* Place above the text box */
+  left: 20px; /* Slightly offset to the right */
+  padding: 5px 15px;
+  background-color: rgba(255, 255, 255, 0.9); /* Light retro style */
+  color: black; /* Matching text box border color */
+  font-size: 16px;
+  font-family: 'Press Start 2P', Arial, sans-serif; /* Retro font */
+  font-weight: 500;
+  border: 2px solid rgba(0, 0, 0, 0.9); /* Same border color as text box */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  z-index: 10; /* Ensure it appears above other elements */
+}
+
+/* Optional Styling for the Tab-Line Effect */
+#text-box::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
   
 /* Choice Box */
 #choice-box {
@@ -224,3 +174,4 @@ body, html {
         visibility: hidden;
     }
 }
+

@@ -3,28 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indra's First Day</title>
+  <title>Forever School</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="mainMenu.css">
 </head>
 <body>
-  <div id="start-screen">
-    <div class="start-content">
-      <h2>Welcome to St. Michael's!</h2>
-      <!--<p>Click to start or press Space</p> -->
-      <button id="start-button">Get to class!</button> <!-- Start button -->
-    </div>
+  <div id="music-toggle-container">
+    <button id="toggle-music-button" class="music-toggle">🎵</button>
   </div>
+
+  <div id="main-menu">
+    <div class="main-content">
+      <audio id="main-music" src="Bleeping_Demo.mp3" loop></audio>
+      <h2>Miracle's School</h2>
+      <h3>Welcome to St. Michael's!</h3>
+      <button id="start-button">
+        <span class="default-text">Play Game</span>
+        <span class="hover-text">Get to Class!</span>
+      </button>      
+      <button id="scene-selector-button">Select Chapter</button>
+      <button id="options-button">Options</button>
+      <button id="links-button">External Links</button>
+      <button id="exit-button">Exit Game</button>
+      <div id="options-menu" class="side-menu">
+        <ul>
+          <li>
+            <label for="volume-slider">Volume:</label>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+          </li>
+          <li><button id="reset-progress-button">Reset Progress</button></li>
+          <li><button id="back-button">Back</button></li>
+        </ul>
+      </div>
+      <div id="updates-window">
+        <h3>Updates:</h3>
+        <p>Version 1.0: Initial Release!</p>
+      </div>
+    </div>
+  </div>  
   <div id="game">
     <div id="background"></div>
     <div id="character"></div>
     <div id="text-box">
-      <p id="text"></p>
+      <div id="name-tab"></div> <!-- New name tab element -->
+      <div id="text-wrap">
+        <p id="text"></p>
+      </div>
     </div>
     <div id="choice-box"></div>
   </div>
-  <script src="startscreen.js"></script>
+  <script src="mainMenu.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
