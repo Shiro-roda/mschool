@@ -21,10 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize music volume
     mainMusic.volume = 0.5;
 
-    mainMusic.play().catch((error) => {
-        console.error('Music playback error:', error);
-    });
-
     // "Play Game" button functionality
     startButton.addEventListener('click', function () {
         if (!mainMusic.paused) {
