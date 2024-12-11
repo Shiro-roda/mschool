@@ -59,6 +59,7 @@ body, html {
   max-height: 120px;
   display: flex; /* Use flex layout to ensure proper alignment */
   flex-direction: column; /* Stack children vertically */
+  user-select: none;
 }
 
 #text-wrap {
@@ -151,6 +152,7 @@ body, html {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect */
     font-family: 'Press Start 2P', Arial, sans-serif; /* Ensure retro font */
     text-align: left; /* Center text inside button */
+    user-select: none;
 }
   
 .choice:hover {

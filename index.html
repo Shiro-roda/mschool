@@ -11,7 +11,9 @@
 <body>
   <div id="music-toggle-container">
     <button id="toggle-music-button" class="music-toggle">🎵</button>
+    <button id="pause-button" class="music-toggle" style="display: none;">Pause</button>
   </div>
+  
 
   <div id="main-menu">
     <div class="main-content">
@@ -38,10 +40,10 @@
       </div>
       <div id="updates-window">
         <h3>Updates:</h3>
-        <p>Version 1.0: Initial Release!</p>
+        <p>Version 1.0.1: The Pause Menu Update (pausing not included)</p>
       </div>
     </div>
-  </div>  
+  </div>   
   <div id="game">
     <div id="background"></div>
     <div id="character"></div>
@@ -53,7 +55,12 @@
     </div>
     <div id="choice-box"></div>
   </div>
-  <script src="mainMenu.js"></script>
-  <script src="script.js"></script>
+  <div id="pause-menu">
+    <button id="resume-button">Resume</button>
+    <button id="main-menu-button">Main Menu</button>
+  </div>
+  <script type="module" src="pauseMenu.mjs"></script>
+  <script type="module" src="mainMenu.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

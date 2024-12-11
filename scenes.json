@@ -67,7 +67,7 @@
       "borderColor": "rgba(73, 94, 139, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "action": "mainMenu" }
     ]
   },
   {
@@ -86,8 +86,8 @@
       "borderColor": "rgba(73, 94, 139, 0.9)"
     },
     "choices": [
-      { "text": "\"Nice. Sorry, I'm kind of busy right now.\"", "next": 3 },
-      { "text": "\"Uh huh. And what do you need again?\"", "next": 5 }
+      { "text": "\"Uh huh. And what do you need again?\"", "next": 5 },
+      { "text": "\"Nice. Sorry, I'm kind of busy right now.\"", "next": 3 }
     ]
   },
   {
@@ -118,7 +118,7 @@
     "character": "",
     "backgroundMusic": "null",
     "choices": [
-      { "text": "\"...\"", "next": 0 }
+      { "text": "\"...\"", "action": "mainMenu" }
     ]
   },
   {
@@ -169,13 +169,13 @@
     "character": "",
     "backgroundMusic": "null",
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "action": "mainMenu" }
     ]
   },
   {
     "index": 11,
     "name": "Indra",
-    "text": "Since today,               <strong>silly!</strong>",
+    "text": "Since today,               silly!",
     "background": "classroom.jpg",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
@@ -194,55 +194,39 @@
     "index": 12,
     "text": "She sticks her tongue out at you and turns to listen for the teacher taking role to call her name.",
     "background": "classroom.jpg",
-    "typingSound": "Retro_Single_v1_wav.mp3",
-    "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
-    },
-    "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
-    },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "(<em>Get up and leave.</em>)", "action": "mainMenu" },
+      { "text": "Wait patiently for the teacher to start class.", "next": 14 }
     ]
   },
   {
     "index": 13,
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "name": "Teacher",
+    "text": "Oh,                    class time is over already!                Goodbye everyone!",
+    "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
+    "backgroundColor": "rgba(200, 200, 200, 0.9)",
+    "box-shadow": "rgba(0, 0, 0, 0.5) 0px 4px 6px",
+    "color": "gray"
     },
     "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
+    "color": "rgb(80, 80, 80)",
+    "borderColor": "rgba(80, 80, 80, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "action": "mainMenu" }
     ]
   },
   {
     "index": 14,
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "text": ".                                    .                                           .                                      .                                       .                                        <br>The teacher has been talking with another student for over five minutes. You might never even get through role call today.",
+    "background": "classroom.jpg",
     "character": "",
-    "typingSound": "Retro_Single_v1_wav.mp3",
-    "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
-    },
-    "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
-    },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "(<em>Wait patiently. You worked your ass off to be in this room, and by God you're gonna learn something for it.", "next": 13 },
+      { "text": "(<em>Sneak your phone out of your bag to listen to some music.</em>", "action": "redirect", "actionTarget": "https://youtu.be/zL19uMsnpSU?si=mf8v9EhLQZcBFOxs" }
     ]
   },
   {

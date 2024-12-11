@@ -5,6 +5,10 @@ const backgroundEl = document.getElementById("background");
 const characterEl = document.getElementById("character");
 const choicesEl = document.getElementById("choice-box");
 const toggleMusicButton = document.getElementById('toggle-music-button');
+const pauseButton = document.getElementById('pause-button');
+const pauseMenuElement = document.getElementById("pause-menu");
+
+
 
 let backgroundMusic = null;
 
@@ -266,10 +270,30 @@ function showChoices(choices) {
     button.innerHTML = choice.text;
     button.classList.add("choice");
     button.addEventListener("click", () => {
-      loadScene(choice.next);
+      if (choice.action) {
+        handleAction(choice.action, choice.actionTarget);
+      } else {
+        loadScene(choice.next);
+      }
     });
     choicesEl.appendChild(button);
   });
+}
+
+// Handle Special Actions
+function handleAction(action, actionTarget) {
+  switch (action) {
+    case "mainMenu":
+      //returnToMainMenu();
+      window.location.reload();
+      break;
+    case "redirect":
+      // Redirect to an external site
+      window.location.href = actionTarget;
+      break;
+    default:
+      console.error(`Unknown action: ${action}`);
+  }
 }
 
 // Initialize Game
@@ -280,10 +304,34 @@ async function initializeGame() {
 
     // Show the game content
     document.getElementById("game").style.display = "block";
-
+    pauseButton.style.display = 'inline-block';
+    pauseButton.classList.add("active");
+    pauseMenuElement.style.display = 'flex';
     loadScene(0); // Start with the first scene
   });
 }
 
+
 // Start the game when the script loads
 initializeGame();
+
+import { PauseMenu } from './pauseMenu.mjs';
+import { returnToMainMenu } from './mainMenu.js';
+import { getIsMenuActive } from './state.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    PauseMenu.initMenuButtons();
+
+    // Example of toggling the pause menu on "P" key press
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'p' || e.key === 'P') {
+            PauseMenu.toggle();
+        }
+    });
+});
+
+// Toggle pause menu when the pause button is clicked
+pauseButton.addEventListener('click', () => {
+  PauseMenu.toggle();
+});
+

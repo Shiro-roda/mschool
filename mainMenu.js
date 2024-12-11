@@ -1,3 +1,6 @@
+import { setIsMenuActive } from './state.js';
+import { getIsMenuActive } from './state.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     const mainMusic = document.getElementById('main-music');
     const startButton = document.getElementById('start-button');
@@ -13,10 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const sceneSelectorButton = document.getElementById('scene-selector-button');
     const linksButton = document.getElementById('links-button');
 
-    let isMenuActive = true;
+    setIsMenuActive(true);
 
     // Initialize music volume
     mainMusic.volume = 0.5;
+
+    mainMusic.play().catch((error) => {
+        console.error('Music playback error:', error);
+    });
 
     // "Play Game" button functionality
     startButton.addEventListener('click', function () {
@@ -24,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             mainMusic.pause();
             mainMusic.currentTime = 0;
         }
-        isMenuActive = false;
+        setIsMenuActive(false);
         mainMenu.style.display = 'none';
         game.style.display = 'block';
     });
@@ -54,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Toggle Music Button functionality
     toggleMusicButton.addEventListener('click', function () {
-        if (mainMusic.paused && isMenuActive === true) {
+        if (mainMusic.paused && getIsMenuActive() === true) {
             mainMusic.play().catch((error) => {
                 console.error('Music playback error:', error);
             });
@@ -80,6 +87,37 @@ document.addEventListener("DOMContentLoaded", function () {
     resetProgressButton.addEventListener('click', function () {
         alert("This feature is under construction <3");
     });
+
+
+    
+
+
+    
     
 
 });
+
+export function returnToMainMenu() {
+    const mainMenu = document.getElementById('main-menu');
+    const game = document.getElementById('game');
+    const pauseMenu = document.getElementById('pause-menu');
+    const pauseButton = document.getElementById('pause-button');
+
+    // Reset visibility states
+    mainMenu.style.display = 'flex';
+    game.style.display = 'none';
+    pauseMenu.style.display = 'none';
+    pauseButton.style.display = 'none';
+
+    // Reset pause menu styles and states
+    pauseMenu.classList.remove('active');
+    document.body.classList.remove('paused');
+    const mainMusic = document.getElementById('main-music');
+    mainMusic.play().catch((error) => {
+        console.error('Music playback error:', error);
+    });
+
+    setIsMenuActive(true); // Use the setter to update the state
+    
+    
+}

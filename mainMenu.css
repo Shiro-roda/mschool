@@ -61,11 +61,11 @@
   max-width: 300px; /* Set a maximum width */
   background-color: white;
   color: #dbb539;
-  border: 3px solid #dbb539;
+  border: 3px solid currentColor;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  animation: buttonTransition 10s infinite alternate;
+  animation: pauseTransition 10s infinite alternate;
   animation-delay: 1s;
   font-family: 'Press Start 2P', Arial, sans-serif;
   text-align: center;
@@ -91,6 +91,7 @@
   color: white;
   transform: scale(1.1);
   box-shadow: 0px 0px 5px 1px currentColor; 
+  animation: reverseTransition 5s infinite;
 }
 
 /* Side Menu Styling */
@@ -107,7 +108,7 @@
   transition: right 0.3s ease-in-out;
   padding: 10px;
   z-index: 1000;
-  animation: colorTransition 10s infinite alternate;
+  animation: pauseTransition 10s infinite alternate;
 }
 
 .side-menu ul {
@@ -126,7 +127,7 @@
   font-size: 16px;
   background-color: white;
   color: #dbb539;
-  border: 2px solid #dbb539;
+  border: 2px solid currentColor;
   border-radius: 5px;
   font-family: 'Press Start 2P', Arial, sans-serif;
   cursor: pointer;
@@ -136,6 +137,7 @@
 .side-menu button:hover {
   background-color: #dbb539;
   color: white;
+  animation: reverseTransition 5s infinite;
 }
 
 /* Show the menu when active */
@@ -152,6 +154,7 @@
 }
 
 .music-toggle {
+  margin-top: 5px;
   font-size: 24px;
   background-color: white;
   border: 3px solid currentColor;
@@ -286,4 +289,135 @@
     color: #dbb539;
     border: 3px solid #dbb539;
   }
+}
+
+/* Pause menu base styles */
+#pause-menu {
+    position: fixed;
+    top: 0;
+    left: 25%; /* Center horizontally */
+    width: 40%; /* Take up 40% of the screen width */
+    height: 20%; /* Adjust height as needed */
+    background: rgba(255, 255, 255, 0.9); /* Dark background */
+    color: rgba(219, 181, 57, 0.9);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid currentColor; /* Accent border matching main menu */
+    border-radius: 2px;
+    z-index: 1000;
+    transform: translate(-50%, -110%); /* Start offscreen above the viewport */
+    transition: transform 0.4s ease-in-out; /* Smooth sliding transition */
+    animation: pauseTransition 10s infinite alternate;
+    z-index: 1001;
+}
+
+/* Keyframe Animation for Color Transition */
+@keyframes pauseTransition {
+    0% {
+      background-color: rgba(255, 255, 255, 0.9);
+      color:  rgba(219, 181, 57, 0.9);
+    }
+    20% {
+      background-color:rgba(202, 209, 224, 0.9);
+      color: rgba(179, 175, 162, 0.9);
+    }
+    40% {
+      background-color:rgba(115, 136, 183, 0.9);
+      color: rgba(90, 90, 90, 0.8);
+    }
+    50% {
+      background-color:rgba(68, 94, 151, 0.9);
+      color: rgba(0, 0, 0, 0.8);
+    }
+    60% {
+      background-color:rgba(115, 136, 183, 0.9);
+      color: rgba(90, 90, 90, 0.8);
+    }
+    80% {
+      background-color:rgba(202, 209, 224, 0.9);
+      color: rgba(179, 175, 162, 0.9);
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0.9);
+      color:  rgba(219, 181, 57, 0.9);
+    }
+}
+
+/* Pause menu active state */
+#pause-menu.active {
+    transform: translate(-50%, -5%); /* Slide into view */
+}
+
+#pause-button.active {
+    transform: translate(0%, 0%); /* Start offscreen above the viewport */
+
+}
+
+#pause-button.active:hover {
+    transform: translate(0%, 0%); /* Start offscreen above the viewport */
+    transform: scale(1.2);
+    color: white;
+    background-color: #dbb539;
+}
+
+/* Menu buttons */
+#pause-menu button {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 500px;
+  padding: 15px 5px;
+  font-size: 18px;
+  width: 50%; /* Ensure buttons are the same length */
+  max-width: 190px; /* Set a maximum width */
+  background-color: white;
+  color: #dbb539;
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  animation: pauseTransition 10s infinite alternate;
+  animation-delay: 1s;
+  font-family: 'Press Start 2P', Arial, sans-serif;
+  text-align: center;
+  transition: transform 0.4s ease-in-out; /* Smooth sliding transition */
+  z-index: 1000;
+}
+
+/* Button Hover Effect */
+#pause-menu button:hover {
+    background-color: #dbb539;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 5px 1px currentColor; 
+    animation: reverseTransition 5s infinite;
+}
+
+/* Add a shadow effect for styling consistency */
+#pause-menu {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Pause Button Styling */
+#pause-button {
+  margin-top: 5px;
+  font-size: 24px;
+  background-color: white;
+  border: 3px solid currentColor;
+  color: #dbb539;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', Arial, sans-serif;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  margin-left: 20px; /* Add spacing between music and pause buttons */
+  display: none; /* Hidden by default */
+  transform: translate(0%, -150%); /* Slide into view */
+}
+
+#pause-button:hover {
+  transform: translate(0%, -150%);
 }
