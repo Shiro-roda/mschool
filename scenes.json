@@ -2,6 +2,7 @@
   {
     "index": 0,
     "text": "                                          A girl with long white hair tucked into a thick blue scarf stops by your locker between classes.                      You've never seen her before,                    but then again it <em>is</em> your first day back after a month-long suspension.",
+    "typingSound":"Retro_Single_v2_wav.mp3",
     "background": "hallway.jpg",
     "backgroundMusic": "Blippy_Trance.mp3",
     "choices": [
@@ -221,144 +222,131 @@
   },
   {
     "index": 14,
-    "text": ".                                    .                                           .                                      .                                       .                                        <br>The teacher has been talking with another student for over five minutes. You might never even get through role call today.",
+    "text": ".                                    .                                           .                                      .                                       .                                        <br>The teacher has been talking with another student for over five minutes. You might never even get through role call today.                              <br>Indra has begun nudging you under your desk,                  trying to get your attention.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
-      { "text": "(<em>Wait patiently. You worked your ass off to be in this room, and by God you're gonna learn something for it.", "next": 13 },
+      { "text": "(<em>Wait patiently. You worked your ass off to be in this room, and by God you're going to learn something for it.", "next": 15 },
+      { "text": "\"<em>What is it?</em>\""},
       { "text": "(<em>Sneak your phone out of your bag to listen to some music.</em>", "action": "redirect", "actionTarget": "https://youtu.be/zL19uMsnpSU?si=mf8v9EhLQZcBFOxs" }
     ]
   },
   {
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "index": 15,
+    "text": ".               .             .             .                    <br>The teacher finished her conversation just to get caught in another with the next student.                    Indra is getting even more restless, scooting her desk closer to yours with a hiss.",
+    "background": "classroom.jpg",
     "character": "",
-    "typingSound": "Retro_Single_v1_wav.mp3",
-    "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
-    },
-    "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
-    },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "<em>Ugh</em>", "next": 16 }
     ]
   },
   {
+    "index": 16,
     "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "text": "Hey,                           Maddy!                  Maddy!",
+    "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
       "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
+      "box-shadow": "rgba(73, 94, 139, 0.8)",
+      "font-style": "italic"
     },
     "nameStyle": {
       "color": "rgb(73, 94, 139)",
       "borderColor": "rgba(73, 94, 139, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "What?", "next": 23 },
+      { "text": "<strong>Don't call me that.</strong>", "next": 22 },
+      { "text": "<em>Can you get out of my face!?</em>", "next": 17 },
+      { "text": "<em><strong>What???</strong></em>", "next": 17 }
     ]
   },
   {
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "index": 17,
+    "text": "The girl cringes away, her eyes darting to the side as she bites her lip under her scarf. Before she can respond, the teacher clears her throat to pull your attention to her figure looming over your desk.",
+    "background": "classroom.jpg",
     "character": "",
-    "typingSound": "Retro_Single_v1_wav.mp3",
-    "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
-    },
-    "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
-    },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "<em>Goddammit</em>", "next": 18 }
     ]
   },
   {
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "index": 18,
+    "name": "Teacher",
+    "text": "Ms. Morgan,        do you have a problem with your classmate?",
+    "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
+      "backgroundColor": "rgba(200, 200, 200, 0.9)",
+      "box-shadow": "rgba(0, 0, 0, 0.5) 0px 4px 6px",
+      "color": "gray",
+      "font-style": "strong"
     },
     "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
+      "color": "rgb(80, 80, 80)",
+      "borderColor": "rgba(80, 80, 80, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "Uhhhh, no.", "next": 19 }
     ]
   },
   {
+    "index": 19,
     "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "text": "No ma'am!",
+    "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
       "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
+      "box-shadow": "rgba(73, 94, 139, 0.8)",
+      "color": "white"
     },
     "nameStyle": {
       "color": "rgb(73, 94, 139)",
       "borderColor": "rgba(73, 94, 139, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "next": 20 }
     ]
   },
   {
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "index": 20,
+    "name": "Teacher",
+    "text": ".                            .                        .                                             If you say so, Miss.",
+    "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
+      "backgroundColor": "rgba(200, 200, 200, 0.9)",
+      "box-shadow": "rgba(0, 0, 0, 0.5) 0px 4px 6px",
+      "color": "gray"
     },
     "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
+      "color": "rgb(80, 80, 80)",
+      "borderColor": "rgba(80, 80, 80, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "next": 21 }
     ]
   },
   {
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "index": 21,
+    "text": "She jots down your name in her attendance record,                     and walks back to her podium to begin class.",
+    "background": "classroom.jpg",
     "character": "",
-    "typingSound": "Retro_Single_v1_wav.mp3",
-    "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
-    },
-    "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
-    },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "action": "mainMenu" }
     ]
   },
   {
+    "index": 22,
     "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "text": "Ah   .               .                      .                 okay!             <br>Are you listening now?                       <p><em>(She will not remember that.)</em>",
+    "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
@@ -370,31 +358,23 @@
       "borderColor": "rgba(73, 94, 139, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "<em>Uggghhhh right whatever.</em>", "next": 23 }
     ]
   },
   {
-    "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "index": 23,
+    "text": "Her eyes smile,              and she leans in with a whisper,                        black and blue wool brushing against your ear.",
+    "background": "classroom.jpg",
     "character": "",
-    "typingSound": "Retro_Single_v1_wav.mp3",
-    "textBoxStyle": {
-      "backgroundColor": "rgba(73, 94, 139, 0.9)",
-      "box-shadow": "rgba(73, 94, 139, 0.8)"
-    },
-    "nameStyle": {
-      "color": "rgb(73, 94, 139)",
-      "borderColor": "rgba(73, 94, 139, 0.9)"
-    },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "next": 24 }
     ]
   },
   {
+    "index": 24,
     "name": "Indra",
-    "text": "",
-    "background": "hallway.jpg",
+    "text": "We're gonna be sitting here the whole period anyways,                       lets go find something better to do!",
+    "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
     "textBoxStyle": {
@@ -406,7 +386,7 @@
       "borderColor": "rgba(73, 94, 139, 0.9)"
     },
     "choices": [
-      { "text": "...", "next": 0 }
+      { "text": "...", "action": "mainMenu" }
     ]
   },
   {

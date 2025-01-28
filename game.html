@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forever School</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mainMenu.css">
+</head>
+<body>
+  <div id="music-toggle-container">
+     <button id="toggle-music-button" class="music-toggle">🎵</button>
+     <button id="pause-button" class="music-toggle">Pause</button>
+  </div>
+  <div id="game">
+    <div id="background"></div>
+    <div id="character"></div>
+    <div id="text-box">
+      <div id="name-tab"></div>
+      <div id="text-wrap">
+        <p id="text"></p>
+      </div>
+    </div>
+    <div id="choice-box"></div>
+  </div>
+  <div id="pause-menu">
+    <label id="volume-label" for="pause-volume-slider">Volume:</label>
+    <button id="resume-button">Resume</button>
+    <button id="main-menu-button">Main Menu</button>
+    <div id="pause-volume-slider-container">
+      <input type="range" id="pause-volume-slider" min="0" max="1" step="0.1" value="0.5">
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
+  <script type="module" src="pauseMenu.mjs"></script>
+</body>
+</html>

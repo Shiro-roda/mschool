@@ -15,38 +15,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const volumeSlider = document.getElementById('volume-slider');
     const sceneSelectorButton = document.getElementById('scene-selector-button');
     const linksButton = document.getElementById('links-button');
+    const feedbackButton = document.getElementById("feedback-button");
+    const feedbackModal = document.getElementById("feedback-modal");
+    const feedbackForm = document.getElementById("feedback-form"); // The Netlify form
+    const feedbackText = document.getElementById("feedback-text");
+    const submitFeedbackButton = document.getElementById("submit-feedback-button");
+    const closeFeedbackButton = document.getElementById("close-feedback-button");
+    
+
+    
+    
+  
 
     setIsMenuActive(true);
+    let musicToggled = false;
+
+    document.body.addEventListener('click', () => {
+        if (mainMusic.paused === true && musicToggled === false) {
+            mainMusic.play().catch((error) => {
+                console.error('Main menu music playback error:', error);
+            });
+            musicToggled = true;
+        }
+    });
 
     // Initialize music volume
     mainMusic.volume = 0.5;
 
     // "Play Game" button functionality
     startButton.addEventListener('click', function () {
-        if (!mainMusic.paused) {
-            mainMusic.pause();
-            mainMusic.currentTime = 0;
-        }
-        setIsMenuActive(false);
-        mainMenu.style.display = 'none';
-        game.style.display = 'block';
+        window.open("game.html", "_blank");
+        open('index.html', '_self').close();
     });
 
     // Exit button functionality
     exitButton.addEventListener('click', function () {
-        if (!mainMusic.paused) {
-            mainMusic.pause();
-            mainMusic.currentTime = 0;
-        }
-        if (window.close) {
-            window.close();
-        } else {
-            alert("Thank you for playing! Please close the tab manually.");
-        }
+        open('index.html', '_self').close();
+       
     });
 
     // Toggle Options Menu
     optionsButton.addEventListener('click', function () {
+        feedbackButton.classList.add("active");
         optionsMenu.classList.toggle('active');
     });
 
@@ -83,6 +93,79 @@ document.addEventListener("DOMContentLoaded", function () {
     resetProgressButton.addEventListener('click', function () {
         alert("This feature is under construction <3");
     });
+    
+
+    // Show the feedback modal
+    feedbackButton.addEventListener("click", () => {
+        feedbackModal.classList.add("active"); // Show backdrop
+        document.querySelector(".modal-content").classList.add("active"); // Slide content down // Add active class to slide modal down
+        feedbackButton.classList.remove("active"); // Hide the feedback button if necessary
+        feedbackModal.style.transform = "translate(0, 0%)"
+    });
+
+    // Close the feedback modal
+    closeFeedbackButton.addEventListener("click", () => {
+        feedbackModal.style.transform = "translate(0, -200%)";
+        feedbackText.value = ""; // Clear the feedback form
+        feedbackButton.classList.add("active"); // Show the feedback button again
+        
+    });
+
+
+    // Handle feedback submission
+    feedbackForm.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Prevent default page reload
+    
+        const feedback = feedbackText.value.trim();
+        if (!feedback) {
+            alert("Please enter your feedback.");
+            return;
+        }
+    
+        // Let Netlify handle the form submission
+        const formData = new FormData(feedbackForm);
+        try {
+            const response = await fetch("/", {
+                method: "POST",
+                body: formData,
+            });
+    
+            if (response.ok) {
+                alert("Thank you for your feedback!");
+                feedbackText.value = ""; // Clear the text area
+                feedbackModal.classList.remove("active");
+            } else {
+                throw new Error("Failed to submit feedback.");
+            }
+        } catch (error) {
+            console.error("Error submitting feedback:", error);
+            alert("There was an error submitting your feedback. Please try again.");
+        }
+    });
+    
+
+    async function sendFeedbackToAPI(feedback) {
+        try {
+        const response = await fetch('/submit-feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ feedback }),
+        });
+    
+        if (!response.ok) {
+            throw new Error('Failed to submit feedback');
+        }
+    
+        const data = await response.json();
+        console.log(data.message);
+        alert('Thank you for your feedback!');
+        } catch (error) {
+        console.error('Error submitting feedback:', error);
+        alert('There was an error submitting your feedback. Please try again.');
+        }
+    }
+
+    
 
 
     
@@ -92,6 +175,44 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const updatesWindow = document.getElementById("updates-window");
+
+    // Fetch updates from the JSON file
+    fetch("updates.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch updates.");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Clear the updates window
+            updatesWindow.innerHTML = "";
+
+            // Populate updates dynamically
+            data.forEach(update => {
+                // Create elements for each update
+                const header = document.createElement("h3");
+                header.className = "update-header";
+                header.textContent = update.header;
+
+                const text = document.createElement("p");
+                text.className = "update-text";
+                text.textContent = update.text;
+
+                // Append to the updates window
+                updatesWindow.appendChild(header);
+                updatesWindow.appendChild(text);
+            });
+        })
+        .catch(error => {
+            updatesWindow.textContent = "Failed to load updates.";
+            console.error(error);
+        });
+});
+
 
 export function returnToMainMenu() {
     const mainMenu = document.getElementById('main-menu');

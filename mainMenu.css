@@ -44,11 +44,14 @@
   margin-bottom: 20px;
 }
 
+
+
 /* Button Container for Column Layout */
 .main-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 60px;
 }
 
 /* Main Menu Button Styles */
@@ -98,14 +101,14 @@
 .side-menu {
   position: absolute;
   top: 50px; /* Align below the header */
-  right: -320px; /* Start off-screen */
-  width: 300px;
+  right: -360px; /* Start off-screen */
+  width: 330px;
   height: calc(100% - 50px); /* Full height minus header */
   background-color: whitesmoke;
   color: #dbb539;
   border-left: 3px solid currentColor;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  transition: right 0.3s ease-in-out;
+  transition: right 0.7s ease-in-out;
   padding: 10px;
   z-index: 1000;
   animation: pauseTransition 10s infinite alternate;
@@ -131,7 +134,7 @@
   border-radius: 5px;
   font-family: 'Press Start 2P', Arial, sans-serif;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 1s ease-in-out;
 }
 
 .side-menu button:hover {
@@ -144,6 +147,205 @@
 .side-menu.active {
   right: 0;
 }
+
+/* Feedback Modal Styling */
+#feedback-modal {
+  max-width: 400px; /* Constrain the modal to a reasonable width */
+  position: fixed;
+  top: 50px; /* Align with side menu */
+  right: -330px; /* Offset to match side menu width */
+  width: 300px; /* Smaller width */
+  height: auto; /* Adjust to content */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column; /* Stack children vertically */
+  gap: 15px; /* Add spacing between elements */
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-200%);
+  transition: transform 0.9s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+textarea {
+  width: 100%; /* Occupy full width of parent */
+  max-width: 100%; /* Prevent overflowing parent width */
+  height: 100px; /* Set a fixed height */
+  resize: vertical; /* Allow only vertical resizing */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#feedback-modal.active {
+  visibility: visible;
+  opacity: 1;
+  right: 21.2%; /* Align with side menu */
+  top: 22.7%;
+  transform: translateY(0);
+}
+
+/* Style for Feedback Button in Options Menu */
+#feedback-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: white;
+  color: #dbb539;
+  border: 2px solid currentColor;
+  border-radius: 5px;
+  font-family: 'Press Start 2P', Arial, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  transform: translateX(110%);
+}
+
+#feedback-button:hover {
+  background-color: #dbb539;
+  color: white;
+}
+
+#feedback-button.active {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+/* Feedback Wrapper */
+#feedback-wrapper {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+/* Feedback Button */
+#feedback-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: white;
+  color: #dbb539;
+  border: 2px solid currentColor;
+  border-radius: 5px;
+  font-family: 'Press Start 2P', Arial, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 1s ease-in-out;
+}
+
+#feedback-button:hover {
+  background-color: #dbb539;
+  color: white;
+}
+
+/* Feedback Form Content (Initially Hidden) */
+#feedback-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 330px;
+  background-color: white;
+  color: black;
+  padding: 15px;
+  border: 2px solid #dbb539;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-100%);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  z-index: 10;
+}
+
+#feedback-content.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Textarea Styling */
+#feedback-text {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+/* Buttons */
+#submit-feedback-button, #close-feedback-button {
+  width: calc(50% - 5px);
+  margin: 0 5px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #dbb539;
+  border-radius: 5px;
+  background-color: white;
+  color: #dbb539;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+#submit-feedback-button:hover, #close-feedback-button:hover {
+  background-color: #dbb539;
+  color: white;
+}
+
+
+
+.modal-content {
+  visibility: visible;
+  opacity: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%; /* Ensure the modal fits smaller screens */
+  max-width: 400px; /* Constrain the modal to a reasonable width */
+  flex-direction: column; /* Stack children vertically */
+  gap: 15px; /* Add spacing between elements */
+}
+
+#modal-content.active {
+  visibility: visible;
+  opacity: 1;
+  right: 21.2%; /* Align with side menu */
+  top: 22.7%;
+}
+
+
+.modal-content button {
+  margin: 0 auto; /* Center buttons horizontally */
+  width: 90%; /* Keep buttons consistent with modal width */
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  padding-bottom: 20px; /* Ensure header has space */
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Align buttons below textarea */
+#submit-feedback-button,
+#close-feedback-button {
+  display: block; /* Ensure buttons appear as blocks */
+  width: calc(100% - 20px); /* Provide padding alignment */
+}
+
 
 /* Music Toggle Button */
 #music-toggle-container {
@@ -177,42 +379,50 @@
 /* Retro Volume Slider with Contrasting Colors */
 #volume-slider {
   -webkit-appearance: none;
-  width: 100%;
+  width: 96%;
   height: 8px;
   border-radius: 5px;
   outline: none;
   margin-top: 10px;
   cursor: pointer;
+  background-color: currentColor; /* Yellow background */
+  color: rgba(219, 181, 57, 0.9); /* Black thumb */
   animation: sliderColorTransition 10s infinite alternate;
+  margin-bottom: 10px;
+  border: 3px solid currentColor;
 }
 
 #volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 30px;
   background: currentColor; /* Match to the animated color */
-  border: 2px solid black; /* Provide contrasting border */
-  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9); /* Provide contrasting border */
+  border-color: solid rgba(255, 255, 255, 0.9);
+  border-radius: 7%;
   cursor: pointer;
-  animation: sliderColorTransition 10s infinite alternate;
+  animation: sliderThumbTransition 10s infinite alternate;
 }
 
 #volume-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: currentColor; /* Match to the animated color */
-  border: 2px solid black; /* Provide contrasting border */
-  border-radius: 50%;
+  width: 12px;
+  height: 30px;
+  border-radius: 7%;
   cursor: pointer;
-  animation: sliderColorTransition 10s infinite alternate;
+}
+
+
+
+#volume-slider::-webkit-slider-thumb:hover {
+  scale:(1.2); 
 }
 
 /* Keyframe Animation for Volume Slider */
 @keyframes sliderColorTransition {
   0% {
     background-color: #dbb539; /* Yellow background */
-    color: white; /* Black thumb */
+    color: rgba(211, 211, 211, 0.9); /* Black thumb */
   }
   50% {
     background-color: black; /* Dark blue background */
@@ -220,7 +430,7 @@
   }
   100% {
     background-color: #dbb539; /* Yellow background */
-    color: white; /* Black thumb */
+    color: rgba(211, 211, 211, 0.9); /* Black thumb */
   }
 }
 
@@ -232,6 +442,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 23%;
   background: whitesmoke;
   color: #dbb539;
   padding: 10px;
@@ -239,7 +450,25 @@
   text-align: left;
   animation: colorTransition 10s infinite alternate;
   animation-delay: 1.5s;
+  overflow-y: auto;
 }
+
+.update-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  position: static;
+}
+
+.update-text {
+  font-size: 14px;
+  margin: 5px 0 15px;
+  white-space: pre-line; /* Preserve line breaks from JSON text */
+  position: static;
+}
+
+
+
 
 /* Keyframe Animation for Color Transition */
 @keyframes colorTransition {
@@ -291,6 +520,38 @@
   }
 }
 
+/* Keyframe Animation for Button Transition */
+@keyframes sliderThumbTransition {
+  0% {
+    border-color: rgba(255, 255, 255, 0.9);
+    color:  rgba(219, 181, 57, 0.9);
+  }
+  20% {
+    border-color:rgba(202, 209, 224, 0.9);
+    color: rgba(179, 175, 162, 0.9);
+  }
+  40% {
+    border-color:rgba(115, 136, 183, 0.9);
+    color: rgba(90, 90, 90, 0.8);
+  }
+  50% {
+    border-color:rgba(68, 94, 151, 0.9);
+    color: rgba(0, 0, 0, 0.8);
+  }
+  60% {
+    border-color:rgba(115, 136, 183, 0.9);
+    color: rgba(90, 90, 90, 0.8);
+  }
+  80% {
+    border-color:rgba(202, 209, 224, 0.9);
+    color: rgba(179, 175, 162, 0.9);
+  }
+  100% {
+    border-color: rgba(255, 255, 255, 0.9);
+    color:  rgba(219, 181, 57, 0.9);
+  }
+}
+
 /* Pause menu base styles */
 #pause-menu {
     position: fixed;
@@ -300,7 +561,6 @@
     height: 20%; /* Adjust height as needed */
     background: rgba(255, 255, 255, 0.9); /* Dark background */
     color: rgba(219, 181, 57, 0.9);
-    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -308,7 +568,7 @@
     border-radius: 2px;
     z-index: 1000;
     transform: translate(-50%, -110%); /* Start offscreen above the viewport */
-    transition: transform 0.4s ease-in-out; /* Smooth sliding transition */
+    transition: transform 0.6s ease-in-out; /* Smooth sliding transition */
     animation: pauseTransition 10s infinite alternate;
     z-index: 1001;
 }
@@ -365,9 +625,9 @@
 /* Menu buttons */
 #pause-menu button {
   position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
   margin-right: 500px;
   padding: 15px 5px;
   font-size: 18px;
@@ -383,7 +643,7 @@
   animation-delay: 1s;
   font-family: 'Press Start 2P', Arial, sans-serif;
   text-align: center;
-  transition: transform 0.4s ease-in-out; /* Smooth sliding transition */
+  transition: transform 1s ease-in-out; /* Smooth sliding transition */
   z-index: 1000;
 }
 
@@ -413,11 +673,64 @@
   cursor: pointer;
   font-family: 'Press Start 2P', Arial, sans-serif;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  margin-left: 20px; /* Add spacing between music and pause buttons */
-  display: none; /* Hidden by default */
+  margin-left: 10px; /* Add spacing between music and pause buttons */
   transform: translate(0%, -150%); /* Slide into view */
 }
 
 #pause-button:hover {
   transform: translate(0%, -150%);
+}
+
+#pause-volume-slider-container {
+  position: absolute;
+  top: -10%; /* Adjust to align with pause menu */
+  right: 10px; /* Position it to the right of the pause menu */
+  width: 45px; /* Slider thumb width for vertical alignment */
+  height: 200px; /* Set the height of the slider */
+  display: flex;
+  justify-content: center; /* Center the slider inside the container */
+  align-items: center;
+  transform: rotate(-90deg); /* Rotate the slider to make it vertical */
+  transform-origin: center; /* Ensure rotation origin is the center */
+}
+
+/* Pause Volume Slider */
+#pause-volume-slider {
+  -webkit-appearance: none;
+  width: 200px; /* Length of the slider after rotation */
+  height: 8px; /* Slider track width */
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  background-color: #dbb539; /* Yellow background */
+  color: white; /* Black thumb */
+  animation: sliderColorTransition 10s infinite alternate;
+}
+
+#pause-volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 30px;
+  background: currentColor;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+#pause-volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 30px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+#volume-slider::-webkit-slider-thumb:hover {
+  scale:(1.2); 
+}
+
+#volume-label {
+  margin-left: 77%;
+  position: absolute;
+  margin-top: 18px;
 }
