@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // Handle feedback submission
     feedbackForm.addEventListener("submit", async (event) => {
         event.preventDefault(); // Prevent default page reload
     
@@ -132,8 +131,16 @@ document.addEventListener("DOMContentLoaded", function () {
     
             if (response.ok) {
                 alert("Thank you for your feedback!");
-                feedbackText.value = ""; // Clear the text area
-                feedbackModal.classList.remove("active");
+    
+                // Slide out the feedback modal
+                feedbackModal.style.transform = "translateY(-200%)"; // Slide modal out of view
+                feedbackModal.style.transition = "transform 0.6s ease-in-out";
+    
+                setTimeout(() => {
+                    feedbackModal.classList.remove("active"); // Hide the modal completely
+                    feedbackModal.style.transform = ""; // Reset transform for re-entry
+                    feedbackText.value = ""; // Clear the text area
+                }, 600); // Match timeout to the CSS transition duration
             } else {
                 throw new Error("Failed to submit feedback.");
             }
