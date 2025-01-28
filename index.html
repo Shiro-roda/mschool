@@ -51,13 +51,14 @@
       </div> -->
       <div id="feedback-modal" class="hidden">
         <div class="modal-content">
-            <form id="feedback-form" name="feedback" method="POST" data-netlify="true" action="/">
-              <textarea name="message" id="feedback-text" placeholder="Enter your feedback here..." rows="5" required></textarea>
-              <div class="modal-buttons">
-                  <button type="submit" id="submit-feedback-button">Submit</button>
-                  <button type="button" id="close-feedback-button">Cancel</button>
-              </div>
-            </form>
+          <form id="feedback-form" name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="feedback">
+            <textarea name="message" id="feedback-text" placeholder="Enter your feedback here..." rows="5" required></textarea>
+            <div class="modal-buttons">
+              <button type="submit" id="submit-feedback-button">Submit</button>
+              <button type="button" id="close-feedback-button">Cancel</button>
+            </div>
+          </form>
         </div>
       </div>    
     </div>

@@ -123,8 +123,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     
         // Let Netlify handle the form submission
-        const formData = new FormData(feedbackForm);
         try {
+            const formData = new FormData(feedbackForm);
             const response = await fetch("/", {
                 method: "POST",
                 body: formData,
@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("There was an error submitting your feedback. Please try again.");
         }
     });
+    
     
 
     async function sendFeedbackToAPI(feedback) {
