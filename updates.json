@@ -1,7 +1,7 @@
 [
     {
         "header": "Version 1.0.2: The Patch Notes Update (pausing hopefully included)",
-        "text": "12/11\n-began keeping a dev journal to draw patch notes from\n-refactored code to use separate html documents for the main menu and game\n-integrated volume slider into pause menu\n\n12/12\n-incorporated user feedback function\n-expanded server functionality\n\n12/13\n-fixed problems with audio playback cutting out on page refresh and optimised to deal with browser performance issues\n-fleshed out updates window code and added patch notes"
+        "text": "12/11\n-began keeping a dev journal to draw patch notes from\n-refactored code to use separate html documents for the main menu and game\n-integrated volume slider into pause menu\n\n12/12\n-incorporated user feedback function\n-expanded server functionality\n\n12/13\n-fixed problems with audio playback cutting out on page refresh and optimised to deal with browser performance issues\n-fleshed out updates window code and added patch notes\n\n1/11/2025\n-added more scenes\n\n1/27/2025\n-changed feedback form to work through Netlify"
     },
     {
         "header": "Version 1.0.1: The Pause Menu Update (pausing not included) 12/10/2024",
