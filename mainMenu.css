@@ -16,6 +16,7 @@
   color: #dbb539;
   animation: colorTransition 10s infinite alternate;
   animation-delay: 1s;
+  overflow: hidden;
 }
 
 /* Title Styling */
@@ -293,7 +294,86 @@ textarea {
   color: white;
 }
 
+#credits-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  color: black;
+  border: 2px solid #dbb539;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none; /* Hidden by default */
+  padding: 20px;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 80vh;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
 
+#credits-modal.active {
+  display: block; /* Show when active */
+  opacity: 1;
+}
+
+#credits-modal h2 {
+  font-size: 24px;
+  margin: 0; /* Remove default margin */
+  padding: 10px 0; /* Add padding for spacing */
+  text-align: center; /* Center the text horizontally */
+  border-bottom: 2px solid #dbb539; /* Optional: Add a separator line */
+  position: sticky; /* Keep the header at the top if the modal is scrollable */
+  top: 0; /* Align to the top of the modal */
+  background-color: white; /* Ensure the header has a background */
+  z-index: 10; /* Ensure it stays above other content */
+}
+
+#credits-modal p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+#credits-modal ul {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 10px 0;
+  text-align: left; /* Align text to the left for better readability */
+}
+
+#credits-modal ul li {
+  margin-bottom: 10px; /* Add spacing between items */
+  font-size: 14px; /* Slightly smaller font for detailed credits */
+  line-height: 1.5; /* Improve readability */
+}
+
+#credits-modal a {
+  color: #dbb539; /* Match the theme color */
+  text-decoration: none; /* Remove underline */
+}
+
+#credits-modal a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+#credits-modal button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #dbb539;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#credits-modal button:hover {
+  background-color: #caa437;
+}
 
 .modal-content {
   visibility: visible;
@@ -445,7 +525,6 @@ button {
   height: 23%;
   background: whitesmoke;
   color: #dbb539;
-  padding: 10px;
   border-radius: 5px 5px 0 0; /* Rounded top corners */
   text-align: left;
   animation: colorTransition 10s infinite alternate;
@@ -734,3 +813,4 @@ button {
   position: absolute;
   margin-top: 18px;
 }
+

@@ -158,19 +158,23 @@
     "background": "hallway.jpg",
     "afterBackground": "classroom.jpg",
     "choices": [
-      { "text": "(<em>Try to ignore her and turn to look out the window</em>)", "next": 10 },
+      {
+        "text": "(<em>Try to ignore her and turn to look out the window</em>)",
+        "code": "if (getGameVariable('ignoredIndra')) { console.log('Already ignored Indra.'); choice.trackChoice = true; loadScene(25); } else { setGameVariable('ignoredIndra', true); choice.trackChoice = false; loadScene(10); }"
+      },
       { "text": "\"...since when were we seatmates?\"", "next": 11 },
       { "text": "(<em>Glare at her like she just grew an elephant's trunk with ears to match</em>)", "next": 12 }
     ]
   },
   {
     "index": 10,
-    "text": "You see a wild-eyed rooster standing just outside,                         staring you down like it's found a bug              or a kernel of corn.                                                 <br>Your classroom is two stories up.                      On a mountain populated by nothing but fake trees for miles around.                That's definitely a snake coming out of its ass.                                                             <br><br>You can feel yourself turn to stone as the world freezes over.",
+    "text": "You see a wild-eyed rooster standing just outside,                         staring you down like it's found a bug              or a kernel of corn.                                                 <br>Your classroom is three stories up.                      On a mountain populated by nothing but fake trees for miles around.                That's definitely a snake coming out of its ass.                                                             <br><br>You can feel yourself turn to stone as the world freezes over.",
     "beforeBackground": "null",
     "character": "",
     "backgroundMusic": "null",
     "choices": [
-      { "text": "...", "action": "mainMenu" }
+      { "text": "...", "action": "mainMenu" },
+      { "text": "...", "next": 9 }
     ]
   },
   {
@@ -391,6 +395,112 @@
   },
   {
     "index": 25,
+    "text": ".           .           .                       You study the view from your third-story classroom.                             Down in the courtyard,           you can see the usual crowd skipping class to sneak under a gazebo and smoke cigarettes or harrass the underclassmen still on break.                                 <br><br>Something else catches your eye.",
+    "background": "classroom.jpg",
+    "character": "",
+    "choices": [
+      { "text": "The raven.", "next": 27 },
+      { "text": "The garden.", "next": 28 },
+      { "text": "The forest.", "next": 29 }
+    ]
+  },
+  {
+    "index": 26,
+    "text": "Something else catches your eye.",
+    "background": "classroom.jpg",
+    "character": "",
+    "choices": [
+      { "text": "The raven.", "next": 27 },
+      { "text": "The garden.", "next": 28 },
+      { "text": "The forest.", "next": 29 },
+      { "text": "The hand on your shoulder.", "next": 30 }
+    ]
+  },
+  {
+    "index": 27,
+    "name": "The Raven",
+    "text": ".",
+    "background": "classroom.jpg",
+    "character": "",
+    "choices": [
+      { "text": ". . .", "next": 26 }
+    ]
+  },
+  {
+    "index": 28,
+    "name": "The Garden",
+    "text": ".",
+    "background": "classroom.jpg",
+    "character": "",
+    "choices": [
+      { "text": ". . .", "next": 26 }
+    ]
+  },
+  {
+    "index": 29,
+    "name": "The Forest",
+    "text": "Beyond the expansive school grounds, ",
+    "background": "classroom.jpg",
+    "character": "",
+    "choices": [
+      { "text": ". . .", "next": 26 }
+    ]
+  },
+  {
+    "name": "Indra",
+    "text": "",
+    "background": "hallway.jpg",
+    "character": "",
+    "typingSound": "Retro_Single_v1_wav.mp3",
+    "textBoxStyle": {
+      "backgroundColor": "rgba(73, 94, 139, 0.9)",
+      "box-shadow": "rgba(73, 94, 139, 0.8)"
+    },
+    "nameStyle": {
+      "color": "rgb(73, 94, 139)",
+      "borderColor": "rgba(73, 94, 139, 0.9)"
+    },
+    "choices": [
+      { "text": "...", "next": 0 }
+    ]
+  },
+  {
+    "name": "Indra",
+    "text": "",
+    "background": "hallway.jpg",
+    "character": "",
+    "typingSound": "Retro_Single_v1_wav.mp3",
+    "textBoxStyle": {
+      "backgroundColor": "rgba(73, 94, 139, 0.9)",
+      "box-shadow": "rgba(73, 94, 139, 0.8)"
+    },
+    "nameStyle": {
+      "color": "rgb(73, 94, 139)",
+      "borderColor": "rgba(73, 94, 139, 0.9)"
+    },
+    "choices": [
+      { "text": "...", "next": 0 }
+    ]
+  },
+  {
+    "name": "Indra",
+    "text": "",
+    "background": "hallway.jpg",
+    "character": "",
+    "typingSound": "Retro_Single_v1_wav.mp3",
+    "textBoxStyle": {
+      "backgroundColor": "rgba(73, 94, 139, 0.9)",
+      "box-shadow": "rgba(73, 94, 139, 0.8)"
+    },
+    "nameStyle": {
+      "color": "rgb(73, 94, 139)",
+      "borderColor": "rgba(73, 94, 139, 0.9)"
+    },
+    "choices": [
+      { "text": "...", "next": 0 }
+    ]
+  },
+  {
     "name": "Indra",
     "text": "",
     "background": "hallway.jpg",
@@ -444,6 +554,5 @@
       { "text": "...", "next": 0 }
     ]
   }
-  
   
 ]
