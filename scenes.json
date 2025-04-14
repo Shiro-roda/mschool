@@ -173,8 +173,7 @@
     "character": "",
     "backgroundMusic": "null",
     "choices": [
-      { "text": "...", "action": "mainMenu" },
-      { "text": "...", "next": 9 }
+      { "text": "...", "action": "mainMenu" }
     ]
   },
   {
@@ -419,7 +418,7 @@
   {
     "index": 27,
     "name": "The Raven",
-    "text": ".",
+    "text": "He's never circled around close enough for you to tell exactly what flavor of corvid he is,      but you dislike ravens less than you do crows (like any other well-adjusted individual),        so that's what he'll be.               <br><br>He flies above the courtyard almost every morning and evening,        and in between he'll visit one windowsill after another.        You can hear him tapping on the glass as you walk down the hallways sometimes,     and by now you've memorized his usual routes well enough that some days you can almost catch him gawking at the students walking by;               but he always sees you long before you've reached his transitory perch,        and each time you approach he's already flapped away too far for you to get a good look at him.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
@@ -429,7 +428,7 @@
   {
     "index": 28,
     "name": "The Garden",
-    "text": ".",
+    "text": "Just about the only thing that's worth looking out this window for.              <br><br>The gardening club is one of the biggest on campus,       but while several members can be seen tending to the school's greenery here and there,       the main garden that weaves throughout the courtyard has never been touched by anyone other than the club's president.                 It looks very well kept,        and despite repeated recent attempts by the faculty to cut the club's funding,       it's somehow looking more beautiful than ever.                  <br><br>You sometimes wonder how long it'll be until the morning they find the president's cold body face down in the dirt and flowers he loves so much.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
@@ -439,7 +438,7 @@
   {
     "index": 29,
     "name": "The Forest",
-    "text": "Beyond the expansive school grounds, ",
+    "text": "Beyond the expansive school grounds,            a plastic forest holds a perrenial rally bordered only by the fog that hides the lower mountainside the whole way around,             each tree proud to stand just as tall as every other.                   <br><br>You didn't see any fog on the ride up the mountain,         and any student on their first day would tell you the same,           but no one that's slept on the school grounds could agree that it hadn't always been there.                  You yourself had only remembered the view from the foot of the mountain today.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
