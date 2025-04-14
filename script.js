@@ -116,6 +116,11 @@ let musicIsplaying = true;
 function updateBackgroundMusic(newTrack) {
   if (!newTrack) return; // If no new track, keep the current one playing
 
+  if (backgroundMusic && backgroundMusic.src === new URL(newTrack, window.location.href).href) {
+    console.log("The new track is the same as the current one. No changes made.");
+    return;
+  }
+
   if (backgroundMusic) {
     // If already playing music, stop it
     backgroundMusic.pause();
