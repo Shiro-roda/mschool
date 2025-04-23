@@ -168,7 +168,7 @@
   },
   {
     "index": 10,
-    "text": "You see a wild-eyed rooster standing just outside,                         staring you down like it's found a bug              or a kernel of corn.                                                 <br>Your classroom is three stories up.                      On a mountain populated by nothing but fake trees for miles around.                That's definitely a snake coming out of its ass.                                                             <br><br>You can feel yourself turn to stone as the world freezes over.",
+    "text": "                                               You see a wild-eyed rooster standing just outside,                         staring you down like it's found a bug              or a kernel of corn.                                                 <br>Your classroom is three stories up.                      On a mountain populated by nothing but fake trees for miles around.                That's definitely a snake coming out of its ass.                                                             <br><br>You can feel yourself turn to stone as the world freezes over.",
     "beforeBackground": "null",
     "character": "",
     "backgroundMusic": "null",
@@ -230,7 +230,7 @@
     "character": "",
     "choices": [
       { "text": "(<em>Wait patiently. You worked your ass off to be in this room, and by God you're going to learn something for it.", "next": 15 },
-      { "text": "\"<em>What is it?</em>\""},
+      { "text": "\"<em>What is it?</em>\"", "next": 23},
       { "text": "(<em>Sneak your phone out of your bag to listen to some music.</em>", "action": "redirect", "actionTarget": "https://youtu.be/zL19uMsnpSU?si=mf8v9EhLQZcBFOxs" }
     ]
   },
