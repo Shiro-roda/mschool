@@ -1,3 +1,31 @@
+import { state, toggleAudioState } from './state.js';
+
+function setGameVariable(variable, value) {
+  const currentState = state.get('gameState') || {};
+  currentState[variable] = value;
+  state.set('gameState', currentState);
+  console.log(`Variable ${variable} set to`, value);
+}
+
+function getGameVariable(variable) {
+  const currentState = state.get('gameState') || {};
+  return currentState[variable];
+}
+
+function addChoiceToHistory(choiceText) {
+  const currentState = state.get('gameState') || {};
+  if (!currentState.choiceHistory) {
+    currentState.choiceHistory = [];
+  }
+  currentState.choiceHistory.push(choiceText);
+  state.set('gameState', currentState);
+}
+
+function hasChoiceBeenMade(choiceText) {
+  const currentState = state.get('gameState') || {};
+  return currentState.choiceHistory && currentState.choiceHistory.includes(choiceText);
+}
+
 // DOM Elements
 const textEl = document.getElementById("text");
 const nameTabEl = document.getElementById("name-tab");
@@ -40,6 +68,8 @@ async function loadScene(sceneIndex) {
     console.error("Scene not found:", sceneIndex);
     return;
   }
+
+  setGameVariable('currentScene', sceneIndex);
 
   nameTabEl.innerText = scene.name || "Sight";
   updateNameStyles(scene.nameStyle);
@@ -86,6 +116,11 @@ let musicIsplaying = true;
 function updateBackgroundMusic(newTrack) {
   if (!newTrack) return; // If no new track, keep the current one playing
 
+  if (backgroundMusic && backgroundMusic.src === new URL(newTrack, window.location.href).href) {
+    console.log("The new track is the same as the current one. No changes made.");
+    return;
+  }
+
   if (backgroundMusic) {
     // If already playing music, stop it
     backgroundMusic.pause();
@@ -118,6 +153,7 @@ toggleMusicButton.addEventListener("click", function () {
     });
     musicIsPlaying = true;
   }
+  toggleAudioState();
 });
 
 // Typing Effect
@@ -231,11 +267,23 @@ function showChoices(choices, currentSceneIndex) {
     const button = document.createElement("button");
     button.innerHTML = choice.text;
     button.classList.add("choice");
+
+    // Check if the choice has been made before and add a class if so
+    if (hasChoiceBeenMade(choice.text)) {
+      button.classList.add("previously-chosen");
+    }
+
     button.addEventListener("click", () => {
-      if (choice.action) {
-        handleAction(choice.action, choice.actionTarget);
+      if (choice.code) {
+        // Execute the code within the choice
+        eval(choice.code);
+      } else if (choice.action) {
+        handleAction(choice.action, choice.actionTarget, choice.variable, choice.value, choice.next);
       } else {
         loadScene(choice.next);
+      }
+      if (choice.trackChoice !== false && choices.length > 1) {
+        addChoiceToHistory(choice.text);
       }
     });
     choicesEl.appendChild(button);
@@ -251,11 +299,16 @@ function showChoices(choices, currentSceneIndex) {
 function handleAction(action, actionTarget) {
   switch (action) {
     case "mainMenu":
+      const currentState = state.get('gameState') || {};
+      state.set('gameState', currentState);
       window.open("index.html", "_blank");
       open("game.html", "_self").close();
       break;
     case "redirect":
       window.location.href = actionTarget;
+      break;
+    case "setVariable":
+      setGameVariable(variable, value);
       break;
     default:
       console.error(`Unknown action: ${action}`);
@@ -340,6 +393,21 @@ async function initializeGame() {
   try {
     const response = await fetch("scenes.json");
     scenes = await response.json();
+
+    // Load saved game state
+    const savedState = state.get('gameState');
+    if (savedState) {
+      console.log('Loaded game state:', savedState);
+      Object.keys(savedState).forEach(key => {
+        setGameVariable(key, savedState[key]);
+      });
+
+      // Apply audio state
+      if (!savedState.isAudioEnabled) {
+        backgroundMusic.pause();
+        musicIsPlaying = false;
+      }
+    }
 
     if (scenes.length > 0) {
       pauseButton.classList.add("active");

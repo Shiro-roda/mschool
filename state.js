@@ -1,5 +1,11 @@
 // File: state.js
 
+// Function to clear game state
+export function clearGameState() {
+    state.remove('gameState');
+    console.log('Game state cleared.');
+}
+
 let isMenuActive = true; // Private variable
 
 // Function to get the state
@@ -51,13 +57,13 @@ const state = {
 };
 
 // Example usage for game state
-const gameState = {
-    isAudioEnabled: true,
-    currentScene: 'main',
-};
-
-// Save game state
-state.set('gameState', gameState);
+if (!state.get('gameState')) {
+    const gameState = {
+        isAudioEnabled: true,
+        currentScene: 0,
+    };
+    state.set('gameState', gameState);
+}
 
 // Retrieve game state
 const savedState = state.get('gameState');

@@ -35,20 +35,11 @@
             <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
           </li>
           <li><button id="reset-progress-button">Reset Progress</button></li>
-          <li><button id="feedback-button">Submit Feedback</button></li> <!-- Added Feedback Button -->
+          <li><button id="feedback-button">Submit Feedback</button></li>
+          <li><button id="credits-button">Credits</button></li>
           <li><button id="back-button">Back</button></li>
         </ul>
       </div>
-      <!-- Feedback Modal 
-      <div id="feedback-modal">
-        <div class="modal-content">
-          <textarea id="feedback-text" placeholder="Enter your feedback here..." rows="5"></textarea>
-          <div class="modal-buttons">
-            <button id="submit-feedback-button">Submit</button>
-            <button id="close-feedback-button">Cancel</button>
-          </div>
-        </div>
-      </div> -->
       <div id="feedback-modal" class="hidden">
         <div class="modal-content">
           <form id="feedback-form" name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field">
@@ -59,6 +50,27 @@
               <button type="button" id="close-feedback-button">Cancel</button>
             </div>
           </form>
+        </div>
+      </div>
+      <div id="credits-modal" class="hidden">
+        <div class="modal-content">
+          <h2>Credits</h2>
+          <p>Programming: シロダ</p>
+          <p>Story: シロダ</p>
+          <p>Art: </p>
+          <p><strong>Music:</strong></p>
+          <ul>
+            <li>
+              "Bleeping Demo" by Kevin MacLeod (<a href="https://incompetech.com" target="_blank">incompetech.com</a>)<br>
+              Licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons: By Attribution 4.0 License</a>
+            </li>
+            <li>
+              "Blippy Trance" by Kevin MacLeod (<a href="https://incompetech.com" target="_blank">incompetech.com</a>)<br>
+              Licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons: By Attribution 4.0 License</a>
+            </li>
+          </ul>
+          <p>Special Thanks: Contributors</p>
+          <button id="close-credits-button">Close</button>
         </div>
       </div>    
     </div>

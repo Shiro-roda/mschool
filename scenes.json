@@ -158,14 +158,17 @@
     "background": "hallway.jpg",
     "afterBackground": "classroom.jpg",
     "choices": [
-      { "text": "(<em>Try to ignore her and turn to look out the window</em>)", "next": 10 },
+      {
+        "text": "(<em>Try to ignore her and turn to look out the window</em>)",
+        "code": "if (getGameVariable('ignoredIndra')) { console.log('Already ignored Indra.'); choice.trackChoice = true; loadScene(25); } else { setGameVariable('ignoredIndra', true); choice.trackChoice = false; loadScene(10); }"
+      },
       { "text": "\"...since when were we seatmates?\"", "next": 11 },
       { "text": "(<em>Glare at her like she just grew an elephant's trunk with ears to match</em>)", "next": 12 }
     ]
   },
   {
     "index": 10,
-    "text": "You see a wild-eyed rooster standing just outside,                         staring you down like it's found a bug              or a kernel of corn.                                                 <br>Your classroom is two stories up.                      On a mountain populated by nothing but fake trees for miles around.                That's definitely a snake coming out of its ass.                                                             <br><br>You can feel yourself turn to stone as the world freezes over.",
+    "text": "You see a wild-eyed rooster standing just outside,                         staring you down like it's found a bug              or a kernel of corn.                                                 <br>Your classroom is three stories up.                      On a mountain populated by nothing but fake trees for miles around.                That's definitely a snake coming out of its ass.                                                             <br><br>You can feel yourself turn to stone as the world freezes over.",
     "beforeBackground": "null",
     "character": "",
     "backgroundMusic": "null",
@@ -390,6 +393,117 @@
     ]
   },
   {
+    "index": 25,
+    "text": ".           .           .                       You study the view from your third-story classroom.                             Down in the courtyard,           you can see the usual crowd skipping class to sneak under a gazebo and smoke cigarettes or harrass the underclassmen still on break.                                 <br><br>Something else catches your eye.",
+    "background": "classroom.jpg",
+    "backgroundMusic": "null",
+    "character": "",
+    "choices": [
+      { "text": "The raven.", "next": 27 },
+      { "text": "The garden.", "next": 28 },
+      { "text": "The forest.", "next": 29 }
+    ]
+  },
+  {
+    "index": 26,
+    "text": "Something else catches your eye.",
+    "background": "classroom.jpg",
+    "character": "",
+    "choices": [
+      { "text": "The raven.", "next": 27 },
+      { "text": "The garden.", "next": 28 },
+      { "text": "The forest.", "next": 29 },
+      { "text": "The hand on your shoulder.", "next": 30 }
+    ]
+  },
+  {
+    "index": 27,
+    "name": "The Raven",
+    "text": "He's never circled around close enough for you to tell exactly what flavor of corvid he is,                       but you dislike ravens less than you do crows (like any other well-adjusted individual),                               so that's what he'll be.                                                      <br><br>He flies above the courtyard almost every morning and evening,                                  and in between he'll visit one windowsill after another.                                        You can hear him tapping on the glass as you walk down the hallways sometimes,                        and by now you've memorized his usual routes well enough that some days you can almost catch him gawking at the students walking by;                                but he always sees you long before you've reached his transitory perch,                        and each time you approach he's already flapped away too far for you to get a good look at him.",
+    "background": "classroom.jpg",
+    "backgroundMusic": "Sincerely.mp3",
+    "character": "",
+    "choices": [
+      { "text": ". . .", "next": 26 }
+    ]
+  },
+  {
+    "index": 28,
+    "name": "The Garden",
+    "text": "Just about the only thing that's worth looking out this window for.                         <br><br>The gardening club is one of the biggest on campus,                               but while several members can be seen tending to the school's greenery here and there,                          the main garden that weaves throughout the courtyard has never been touched by anyone other than the club's president.                                  It looks very well kept,                          and despite repeated recent attempts by the faculty to cut the club's funding,                     it's somehow looking more beautiful than ever.                                         <br><br>You sometimes wonder how long it'll be until the morning they find the president's cold body face down in the dirt and flowers he loves so much.",
+    "background": "classroom.jpg",
+    "backgroundMusic": "Sincerely.mp3",
+    "character": "",
+    "choices": [
+      { "text": ". . .", "next": 26 }
+    ]
+  },
+  {
+    "index": 29,
+    "name": "The Forest",
+    "text": "Beyond the expansive school grounds,                          a plastic forest holds a perrenial rally bordered only by the fog that hides the lower mountainside the whole way around,                             each tree proud to stand just as tall as every other.                                                        <br><br>You didn't see any fog on the ride up the mountain,                           and any student on their first day would tell you the same,                                    but no one that's slept on the school grounds could agree that it hadn't always been there.                                                        You yourself had only remembered the view from the foot of the mountain today.",
+    "background": "classroom.jpg",
+    "backgroundMusic": "Sincerely.mp3",
+    "character": "",
+    "choices": [
+      { "text": ". . .", "next": 26 }
+    ]
+  },
+  {
+    "name": "Indra",
+    "text": "",
+    "background": "hallway.jpg",
+    "character": "",
+    "typingSound": "Retro_Single_v1_wav.mp3",
+    "textBoxStyle": {
+      "backgroundColor": "rgba(73, 94, 139, 0.9)",
+      "box-shadow": "rgba(73, 94, 139, 0.8)"
+    },
+    "nameStyle": {
+      "color": "rgb(73, 94, 139)",
+      "borderColor": "rgba(73, 94, 139, 0.9)"
+    },
+    "choices": [
+      { "text": "...", "next": 0 }
+    ]
+  },
+  {
+    "name": "Indra",
+    "text": "",
+    "background": "hallway.jpg",
+    "character": "",
+    "typingSound": "Retro_Single_v1_wav.mp3",
+    "textBoxStyle": {
+      "backgroundColor": "rgba(73, 94, 139, 0.9)",
+      "box-shadow": "rgba(73, 94, 139, 0.8)"
+    },
+    "nameStyle": {
+      "color": "rgb(73, 94, 139)",
+      "borderColor": "rgba(73, 94, 139, 0.9)"
+    },
+    "choices": [
+      { "text": "...", "next": 0 }
+    ]
+  },
+  {
+    "name": "Indra",
+    "text": "",
+    "background": "hallway.jpg",
+    "character": "",
+    "typingSound": "Retro_Single_v1_wav.mp3",
+    "textBoxStyle": {
+      "backgroundColor": "rgba(73, 94, 139, 0.9)",
+      "box-shadow": "rgba(73, 94, 139, 0.8)"
+    },
+    "nameStyle": {
+      "color": "rgb(73, 94, 139)",
+      "borderColor": "rgba(73, 94, 139, 0.9)"
+    },
+    "choices": [
+      { "text": "...", "next": 0 }
+    ]
+  },
+  {
     "name": "Indra",
     "text": "",
     "background": "hallway.jpg",
@@ -443,6 +557,5 @@
       { "text": "...", "next": 0 }
     ]
   }
-  
   
 ]

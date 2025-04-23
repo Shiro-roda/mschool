@@ -1,5 +1,4 @@
-import { setIsMenuActive } from './state.js';
-import { getIsMenuActive } from './state.js';
+import { setIsMenuActive, getIsMenuActive, clearGameState } from './state.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     const mainMusic = document.getElementById('main-music');
@@ -21,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const feedbackText = document.getElementById("feedback-text");
     const submitFeedbackButton = document.getElementById("submit-feedback-button");
     const closeFeedbackButton = document.getElementById("close-feedback-button");
+    const creditsButton = document.getElementById("credits-button");
+    const creditsModal = document.getElementById("credits-modal");
+    const closeCreditsButton = document.getElementById("close-credits-button");
     
 
     
@@ -89,9 +91,11 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("This feature is under construction <3");
     });
 
-    // Alert for buttons under construction
     resetProgressButton.addEventListener('click', function () {
-        alert("This feature is under construction <3");
+        if (confirm("Are you sure you want to reset your progress? This action cannot be undone.")) {
+            clearGameState();
+            alert("Progress has been reset.");
+        }
     });
     
 
@@ -173,6 +177,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Open the credits modal
+    creditsButton.addEventListener("click", function () {
+        creditsModal.classList.add("active");
+    });
+
+    // Close the credits modal
+    closeCreditsButton.addEventListener("click", function () {
+        creditsModal.classList.remove("active");
+    });
+
     
 
 
@@ -241,6 +255,15 @@ export function returnToMainMenu() {
     mainMusic.play().catch((error) => {
         console.error('Music playback error:', error);
     });
+
+    function scaleMainMenu() {
+        const mainMenu = document.getElementById('main-menu');
+        const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        mainMenu.style.transform = `scale(${scale})`;
+    }
+      
+    window.addEventListener('resize', scaleMainMenu);
+    window.addEventListener('load', scaleMainMenu);
 
     setIsMenuActive(true); // Use the setter to update the state
     
