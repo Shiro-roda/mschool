@@ -178,12 +178,13 @@ body, html {
 }
 
 .redacted {
-  background-color: black;
-  color: black;
-  border-radius: 2px;
-  padding: 0 4px;
-  /* Optional: add letter-spacing for effect */
-  letter-spacing: 2px;
+    background: black;
+    color: black;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-radius: 2px;
+    padding: 0 4px;
 }
 
 /* Blink Animation */
