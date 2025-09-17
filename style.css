@@ -183,6 +183,7 @@ body, html {
     border: none;
     outline: none;
     box-shadow: none;
+    text-shadow: none;
     border-radius: 2px;
     padding: 0 4px;
 }
