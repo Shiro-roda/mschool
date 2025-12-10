@@ -280,7 +280,8 @@ function showChoices(choices, currentSceneIndex) {
       } 
       if (choice.action) {
         handleAction(choice.action, choice.actionTarget, choice.variable, choice.value, choice.next);
-      } else {
+      }
+      if (choice.next) {
         loadScene(choice.next);
       }
       if (choice.trackChoice !== false && choices.length > 1) {
@@ -457,4 +458,5 @@ async function initializeGame() {
 
 // Start the game
 initializeGame();
+
 
