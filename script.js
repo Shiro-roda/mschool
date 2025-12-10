@@ -393,7 +393,7 @@ async function initializeGame() {
   try {
     const response = await fetch("scenesOG.json");
     scenes = await response.json();
-    const altResponse = await fetch("scenes.json");
+    
 
     // Load saved game state
     const savedState = state.get('gameState');
@@ -402,9 +402,6 @@ async function initializeGame() {
       Object.keys(savedState).forEach(key => {
         setGameVariable(key, savedState[key]);
       });
-
-      if (getGameVariable('eyeCaught')) {
-        scenes = await altResponse.json();
 
       // Apply audio state
       if (!savedState.isAudioEnabled) {
@@ -426,4 +423,5 @@ async function initializeGame() {
 
 // Start the game
 initializeGame();
+
 
