@@ -1,12 +1,12 @@
 [
   {
     "index": 0,
-    "text": "                                          A girl with long white hair tucked into a thick blue scarf stops by your locker between classes.                      You've never seen her before,                    but then again it <em>is</em> your first day back after a month-long suspension.",
+    "text": "                                          A <span class=\"redacted\">boy</span> with long white hair tucked into a thick blue scarf stops by your locker between classes.                      You've never seen <span class=\"redacted\">him</span> before,                    but then again it <em>is</em> your first day back after a month-long suspension.",
     "typingSound":"Retro_Single_v2_wav.mp3",
     "background": "hallway.jpg",
     "backgroundMusic": "Blippy_Trance.mp3",
     "choices": [
-      { "text": "(<em>Turn to face her.</em>)", "next": 1 }
+      { "text": "(<em>Turn to face <span class=\"redacted\">him</span>.</em>)", "next": 1 }
     ]
   },
   {
@@ -27,7 +27,7 @@
     "choices": [
       { "text": "\"Madelyn.\"", "next": 2 },
       { "text": "\"What's yours?\"", "next": 4 },
-      { "text": "(<em>Ignore her.</em>)", "next": 6 }
+      { "text": "(<em>Ignore <span class=\"redacted\">him</span>.</em>)", "next": 6 }
     ]
   },
   {
@@ -115,7 +115,7 @@
   },
   {
     "index": 6,
-    "text": ".          .           .                                        <em>She turns around sharply,              stomping away redfaced and incensed with a low grumble</em>.",
+    "text": ".          .           .                                        <em><span class=\"redacted\">he</span> turns around sharply,              stomping away redfaced and incensed with a low grumble</em>.",
     "character": "",
     "backgroundMusic": "null",
     "choices": [
@@ -124,12 +124,12 @@
   },
   {
     "index": 7,
-    "text": "She smiles sweetly under her scarf but doesn't answer,            instead taking you by the hand and pulling you along with strength unbefitting of her stature.                      You barely have a moment to grab your backpack before you're getting dragged down the hall.",
+    "text": "<span class=\"redacted\">he</span> smiles sweetly under <span class=\"redacted\">his</span> scarf but doesn't answer,            instead taking you by the hand and pulling you along with strength unbefitting of <span class=\"redacted\">his</span> stature.                      You barely have a moment to grab your backpack before you're getting dragged down the hall.",
     "background": "hallway.jpg",
     "character": "",
     "choices": [
       { "text": "\"...Can you let go of me? I thought you needed <em>me</em> to show you to class.\"", "next": 8 },
-      { "text": "<em>Where does she think she's going??</em>", "next": 9 },
+      { "text": "<em>Where does <span class=\"redacted\">he</span> think <span class=\"redacted\">he</span>'s going??</em>", "next": 9 },
       { "text": "(<em>Accept your fate.</em>)", "next": 9 }
     ]
   },
@@ -154,16 +154,16 @@
   },
   {
     "index": 9,
-    "text": "Before long,             you're brought all the way to your own classroom.                    She pulls you inside,          throwing you into your usual seat by the back window and taking her own right beside you.                She leans forward and lays her head in her arms,             proudly peeking at you over them.",
+    "text": "Before long,             you're brought all the way to your own classroom.                    <span class=\"redacted\">he</span> pulls you inside,          throwing you into your usual seat by the back window and taking <span class=\"redacted\">his</span> own right beside you.                <span class=\"redacted\">he</span> leans forward and lays <span class=\"redacted\">his</span> head in <span class=\"redacted\">his</span> arms,             proudly peeking at you over them.",
     "background": "hallway.jpg",
     "afterBackground": "classroom.jpg",
     "choices": [
       {
-        "text": "(<em>Try to ignore her and turn to look out the window</em>)",
+        "text": "(<em>Try to ignore <span class=\"redacted\">him</span> and turn to look out the window</em>)",
         "code": "if (getGameVariable('ignoredIndra')) { console.log('Already ignored Indra.'); choice.trackChoice = true; loadScene(25); } else { setGameVariable('ignoredIndra', true); choice.trackChoice = false; loadScene(10); }"
       },
       { "text": "\"...since when were we seatmates?\"", "next": 11 },
-      { "text": "(<em>Glare at her like she just grew an elephant's trunk with ears to match</em>)", "next": 12 }
+      { "text": "(<em>Glare at <span class=\"redacted\">him</span> like <span class=\"redacted\">he</span> just grew an elephant's trunk with ears to match</em>)", "next": 12 }
     ]
   },
   {
@@ -196,7 +196,7 @@
   },
   {
     "index": 12,
-    "text": "She sticks her tongue out at you and turns to listen for the teacher taking role to call her name.",
+    "text": "<span class=\"redacted\">he</span> sticks <span class=\"redacted\">his</span> tongue out at you and turns to listen for the teacher taking role to call <span class=\"redacted\">his</span> name.",
     "background": "classroom.jpg",
     "choices": [
       { "text": "(<em>Get up and leave.</em>)", "action": "mainMenu" },
@@ -236,7 +236,7 @@
   },
   {
     "index": 15,
-    "text": ".               .             .             .                    <br>The teacher finished her conversation just to get caught in another with the next student.                    Indra is getting even more restless, scooting her desk closer to yours with a hiss.",
+    "text": ".               .             .             .                    <br>The teacher finished her conversation just to get caught in another with the next student.                    Indra is getting even more restless, scooting <span class=\"redacted\">his</span> desk closer to yours with a hiss.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
@@ -268,7 +268,7 @@
   },
   {
     "index": 17,
-    "text": "The girl cringes away, her eyes darting to the side as she bites her lip under her scarf. Before she can respond, the teacher clears her throat to pull your attention to her figure looming over your desk.",
+    "text": "The <span class=\"redacted\">boy</span> cringes away, <span class=\"redacted\">his</span> eyes darting to the side as <span class=\"redacted\">he</span> bites <span class=\"redacted\">his</span> lip under <span class=\"redacted\">his</span> scarf. Before <span class=\"redacted\">he</span> can respond, the teacher clears her throat to pull your attention to her figure looming over your desk.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
@@ -348,7 +348,7 @@
   {
     "index": 22,
     "name": "Indra",
-    "text": "Ah   .               .                      .                 okay!             <br>Are you listening now?                       <p><em>(She will not remember that.)</em>",
+    "text": "Ah   .               .                      .                 okay!             <br>Are you listening now?                       <p><em>(<span class=\"redacted\">he</span> will not remember that.)</em>",
     "background": "classroom.jpg",
     "character": "",
     "typingSound": "Retro_Single_v1_wav.mp3",
@@ -366,7 +366,7 @@
   },
   {
     "index": 23,
-    "text": "Her eyes smile,              and she leans in with a whisper,                        black and blue wool brushing against your ear.",
+    "text": "<span class=\"redacted\">His</span> eyes smile,              and <span class=\"redacted\">he</span> leans in with a whisper,                        black and blue wool brushing against your ear.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
@@ -413,7 +413,7 @@
       { "text": "The raven.", "next": 27 },
       { "text": "The garden.", "next": 28 },
       { "text": "The forest.", "next": 29 },
-      { "text": "The hand on your shoulder.", "next": 30 }
+      { "text": "The hand on your shoulder.", "action": "mainMenu" }
     ]
   },
   {
@@ -430,7 +430,7 @@
   {
     "index": 28,
     "name": "The Garden",
-    "text": "Just about the only thing that's worth looking out this window for.                         <br><br>The gardening club is one of the biggest on campus,                               but while several members can be seen tending to the school's greenery here and there,                          the main garden that weaves throughout the courtyard has never been touched by anyone other than the club's president.                                  It looks very well kept,                          and despite repeated recent attempts by the faculty to cut the club's funding,                     it's somehow looking more beautiful than ever.                                         <br><br>You sometimes wonder how long it'll be until the morning they find the president's cold body face down in the dirt and flowers he loves so much.",
+    "text": "Just about the only thing that's worth looking out this window for.                         <br><br>The gardening club is one of the biggest on campus,                               but while several members can be seen tending to the school's greenery here and there,                          the main garden that weaves throughout the courtyard has never been touched by anyone other than the club's president.                                  It looks very well kept,                          and despite repeated recent attempts by the faculty to cut the club's funding,                     it's somehow looking more beautiful than ever.                                         <br><br>You sometimes wonder how long it'll be until the morning they find that scarecrow's threadbarren cold body face down in the dirt and flowers he loves so much.",
     "background": "classroom.jpg",
     "backgroundMusic": "Sincerely.mp3",
     "character": "",
@@ -559,3 +559,5 @@
   }
   
 ]
+
+

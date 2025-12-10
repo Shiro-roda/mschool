@@ -177,6 +177,17 @@ body, html {
     animation: blink 1s steps(2, start) infinite;
 }
 
+.redacted {
+    background: black;
+    color: black;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
+    border-radius: 2px;
+    padding: 0 4px;
+}
+
 /* Blink Animation */
 @keyframes blink {
     to {

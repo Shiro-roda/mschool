@@ -69,7 +69,7 @@ async function loadScene(sceneIndex) {
     return;
   }
 
-  setGameVariable('currentScene', sceneIndex);
+  setGameVariable('currentScene', 0); //Set to 0 for now.
 
   nameTabEl.innerText = scene.name || "Sight";
   updateNameStyles(scene.nameStyle);
@@ -277,9 +277,11 @@ function showChoices(choices, currentSceneIndex) {
       if (choice.code) {
         // Execute the code within the choice
         eval(choice.code);
-      } else if (choice.action) {
+      } 
+      if (choice.action) {
         handleAction(choice.action, choice.actionTarget, choice.variable, choice.value, choice.next);
-      } else {
+      }
+      if (choice.next) {
         loadScene(choice.next);
       }
       if (choice.trackChoice !== false && choices.length > 1) {
@@ -388,13 +390,45 @@ function updateTextBoxStyles(customStyles) {
   }
 }
 
+// -- New helper: load scenes from a given JSON file and optionally start at a given scene index
+async function loadScenesFromFile(filename, startIndex = 0) {
+  try {
+    if (!filename) {
+      console.error("No scenes filename provided to loadScenesFromFile.");
+      return;
+    }
+    const response = await fetch(filename);
+    const loadedScenes = await response.json();
+    if (!Array.isArray(loadedScenes) || loadedScenes.length === 0) {
+      console.error("Loaded scenes file is empty or not an array:", filename);
+      return;
+    }
+    scenes = loadedScenes;
+    // Save the filename so it can persist in the game state
+    setGameVariable('scenesFile', filename);
+    pauseButton.classList.add("active");
+    // Load the startIndex if within range, otherwise 0
+    const indexToLoad = (typeof startIndex === 'number' && startIndex >= 0 && startIndex < scenes.length) ? startIndex : 0;
+    loadScene(indexToLoad);
+  } catch (error) {
+    console.error("Error loading scenes from file:", filename, error);
+  }
+}
+
+// Utility to switch scenes file at runtime. It persists the filename in game state and reloads.
+function setScenesFile(filename, startIndex = 0) {
+  if (!filename) {
+    console.error("setScenesFile called without a filename");
+    return;
+  }
+  setGameVariable('scenesFile', filename);
+  loadScenesFromFile(filename, startIndex);
+}
+
 // Initialize Game
 async function initializeGame() {
   try {
-    const response = await fetch("scenes.json");
-    scenes = await response.json();
-
-    // Load saved game state
+    // Load saved game state first so we can decide which scenes file to load
     const savedState = state.get('gameState');
     if (savedState) {
       console.log('Loaded game state:', savedState);
@@ -404,21 +438,25 @@ async function initializeGame() {
 
       // Apply audio state
       if (!savedState.isAudioEnabled) {
-        backgroundMusic.pause();
+        if (backgroundMusic) backgroundMusic.pause();
         musicIsPlaying = false;
       }
     }
 
-    if (scenes.length > 0) {
-      pauseButton.classList.add("active");
-      loadScene(0);
-    } else {
-      console.error("No scenes available in scenes.json.");
-    }
+    // Decide default scenes file based on whether eyeCaught is set in the saved state.
+    // If eyeCaught is true, use scenes.json; otherwise use scenesOG.json.
+    const defaultScenesFile = (savedState && savedState.eyeCaught) ? 'scenes.json' : 'scenesOG.json';
+
+    // If a scenesFile was explicitly saved in the gameState use it; otherwise use the default above.
+    const scenesFileFromState = getGameVariable('scenesFile') || defaultScenesFile;
+    const startScene = getGameVariable('currentScene') || 0;
+    await loadScenesFromFile(scenesFileFromState, startScene);
   } catch (error) {
-    console.error("Error loading scenes:", error);
+    console.error("Error initializing game:", error);
   }
 }
 
 // Start the game
 initializeGame();
+
+

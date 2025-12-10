@@ -413,7 +413,11 @@
       { "text": "The raven.", "next": 27 },
       { "text": "The garden.", "next": 28 },
       { "text": "The forest.", "next": 29 },
-      { "text": "The hand on your shoulder.", "next": 30 }
+      { 
+        "text": "The hand on your shoulder.",
+        "code": "setGameVariable('eyeCaught', true); setGameVariable('scenesFile', scenes.json);",
+        "action": "mainMenu"
+      }
     ]
   },
   {
@@ -430,7 +434,7 @@
   {
     "index": 28,
     "name": "The Garden",
-    "text": "Just about the only thing that's worth looking out this window for.                         <br><br>The gardening club is one of the biggest on campus,                               but while several members can be seen tending to the school's greenery here and there,                          the main garden that weaves throughout the courtyard has never been touched by anyone other than the club's president.                                  It looks very well kept,                          and despite repeated recent attempts by the faculty to cut the club's funding,                     it's somehow looking more beautiful than ever.                                         <br><br>You sometimes wonder how long it'll be until the morning they find the president's cold body face down in the dirt and flowers he loves so much.",
+    "text": "Just about the only thing that's worth looking out this window for.                         <br><br>The gardening club is one of the biggest on campus,                               but while several members can be seen tending to the school's greenery here and there,                          the main garden that weaves throughout the courtyard has never been touched by anyone other than the club's president.                                  It looks very well kept,                          and despite repeated recent attempts by the faculty to cut the club's funding,                     it's somehow looking more beautiful than ever.                                         <br><br>You sometimes wonder how long it'll be until the morning they find that scarecrow's threadbarren cold body face down in the dirt and flowers he loves so much.",
     "background": "classroom.jpg",
     "backgroundMusic": "Sincerely.mp3",
     "character": "",
