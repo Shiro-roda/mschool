@@ -415,7 +415,7 @@
       { "text": "The forest.", "next": 29 },
       { 
         "text": "The hand on your shoulder.",
-        "code": "setGameVariable('eyeCaught', true);",
+        "code": "setGameVariable('eyeCaught', true); setGameVariable('scenesFile', scenes.json);",
         "action": "mainMenu"
       }
     ]
