@@ -236,7 +236,7 @@
   },
   {
     "index": 15,
-    "text": ".               .             .             .                    <br>The teacher fini<span class=\"redacted\">he</span>d her conversation just to get caught in another with the next student.                    Indra is getting even more restless, scooting <span class=\"redacted\">his</span> desk closer to yours with a hiss.",
+    "text": ".               .             .             .                    <br>The teacher finished her conversation just to get caught in another with the next student.                    Indra is getting even more restless, scooting <span class=\"redacted\">his</span> desk closer to yours with a hiss.",
     "background": "classroom.jpg",
     "character": "",
     "choices": [
@@ -559,4 +559,5 @@
   }
   
 ]
+
 
