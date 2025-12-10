@@ -413,7 +413,11 @@
       { "text": "The raven.", "next": 27 },
       { "text": "The garden.", "next": 28 },
       { "text": "The forest.", "next": 29 },
-      { "text": "The hand on your shoulder.", "next": 30 }
+      { 
+        "text": "The hand on your shoulder.",
+        "code": "setGameVariable('eyeCaught', true);",
+        "action": "mainMenu"
+      }
     ]
   },
   {
