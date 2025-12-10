@@ -277,7 +277,8 @@ function showChoices(choices, currentSceneIndex) {
       if (choice.code) {
         // Execute the code within the choice
         eval(choice.code);
-      } else if (choice.action) {
+      } 
+      if (choice.action) {
         handleAction(choice.action, choice.actionTarget, choice.variable, choice.value, choice.next);
       } else {
         loadScene(choice.next);
@@ -423,5 +424,6 @@ async function initializeGame() {
 
 // Start the game
 initializeGame();
+
 
 
