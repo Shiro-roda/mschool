@@ -69,7 +69,7 @@ async function loadScene(sceneIndex) {
     return;
   }
 
-  setGameVariable('currentScene', sceneIndex);
+  setGameVariable('currentScene', 0); //Set to 0 for now.
 
   nameTabEl.innerText = scene.name || "Sight";
   updateNameStyles(scene.nameStyle);
