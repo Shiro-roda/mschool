@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Use the provided absolute path for the static directory
-const staticDir = 'C:/Users/admin/OneDrive/MSchoolWeb/experimental/project-root_new';
+const staticDir = 'C:/Users/user/Documents/GitHub/mschool';
 
 // Feedback file path
 const feedbackFile = path.join(staticDir, 'feedback.json');

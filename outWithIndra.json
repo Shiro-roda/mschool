@@ -1,0 +1,137 @@
+{
+  "defaults": {
+    "nameStyle": {
+      "color": "black",
+      "borderColor": "rgba(0, 0, 0, 0.9)"
+    },
+    "textBoxStyle": {
+      "backgroundColor": "rgba(0, 0, 0, 0.7)",
+      "box-shadow": "rgba(0, 0, 0, 0.7)"
+    },
+    "backgroundMusic": "Blippy_Trance.mp3",
+    "typingSound": "Retro_Single_v2_wav.mp3",
+    "character": ""
+  },
+  "scenes": [
+    {
+      "index": 0,
+      "name": "",
+      "text": "(BLANK) Scene 0 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 1 } ]
+    },
+    {
+      "index": 1,
+      "name": "",
+      "text": "(BLANK) Scene 1 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 2 } ]
+    },
+    {
+      "index": 2,
+      "name": "",
+      "text": "(BLANK) Scene 2 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 3 } ]
+    },
+    {
+      "index": 3,
+      "name": "",
+      "text": "(BLANK) Scene 3 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 4 } ]
+    },
+    {
+      "index": 4,
+      "name": "",
+      "text": "(BLANK) Scene 4 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 5 } ]
+    },
+    {
+      "index": 5,
+      "name": "",
+      "text": "(BLANK) Scene 5 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 6 } ]
+    },
+    {
+      "index": 6,
+      "name": "",
+      "text": "(BLANK) Scene 6 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 7 } ]
+    },
+    {
+      "index": 7,
+      "name": "",
+      "text": "(BLANK) Scene 7 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 8 } ]
+    },
+    {
+      "index": 8,
+      "name": "",
+      "text": "(BLANK) Scene 8 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Next", "next": 9 } ]
+    },
+    {
+      "index": 9,
+      "name": "",
+      "text": "(BLANK) Scene 9 — replace this with your text.",
+      "background": "",
+      "character": "",
+      "typingSound": "",
+      "backgroundMusic": "",
+      "textBoxStyle": {},
+      "nameStyle": {},
+      "choices": [ { "text": "Finish / Main Menu", "action": "mainMenu" } ]
+    }
+  ]
+}

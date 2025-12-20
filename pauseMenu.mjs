@@ -13,6 +13,8 @@ export const PauseMenu = (() => {
             pauseMenuElement.classList.add("active"); // Trigger sliding animation
             isPaused = true;
             document.body.classList.add("paused");
+            // Notify the rest of the app that the game is paused
+            try { document.dispatchEvent(new CustomEvent('game:paused')); } catch (e) { console.warn('Could not dispatch game:paused', e); }
         }
     }
 
@@ -23,6 +25,8 @@ export const PauseMenu = (() => {
             pauseButton.classList.add("active");
             isPaused = false;
             document.body.classList.remove("paused");
+            // Notify the rest of the app that the game is resumed
+            try { document.dispatchEvent(new CustomEvent('game:resumed')); } catch (e) { console.warn('Could not dispatch game:resumed', e); }
         }
     }
 

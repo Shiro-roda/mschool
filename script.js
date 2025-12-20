@@ -37,6 +37,8 @@ const pauseButton = document.getElementById("pause-button");
 
 let backgroundMusic = null;
 let musicIsPlaying = true;
+// Game paused flag (set via PauseMenu events)
+let gamePaused = false;
 const cachedAudio = {}; // Global cache for audio files
 
 import { PauseMenu } from "./pauseMenu.mjs";
@@ -45,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   PauseMenu.initMenuButtons();
 
   document.getElementById("pause-button").addEventListener("click", () => {
+    // Ensure audio is initialized/unlocked before toggling pause (fixes first-pause music not stopping)
+    try { initializeAudioPlayback(); } catch (e) { /* ignore */ }
     PauseMenu.toggle();
   });
 
@@ -58,8 +62,27 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", initializeAudioPlayback, { once: true });
 });
 
+// Listen for pause/resume events dispatched by PauseMenu
+document.addEventListener('game:paused', () => {
+  gamePaused = true;
+  // Pause background music immediately
+  try {
+    if (backgroundMusic && !backgroundMusic.paused) backgroundMusic.pause();
+  } catch (e) { console.warn('Error pausing background music on game:paused', e); }
+});
+
+document.addEventListener('game:resumed', () => {
+  gamePaused = false;
+  // Resume background music if the user had it enabled
+  try {
+    if (backgroundMusic && musicIsPlaying) backgroundMusic.play().catch(() => {});
+  } catch (e) { console.warn('Error resuming background music on game:resumed', e); }
+});
+
 // Scenes array (to be populated dynamically)
 let scenes = [];
+// Chapter-level defaults (from scene files that include a defaults object)
+let chapterDefaults = {};
 
 // Load a Scene
 async function loadScene(sceneIndex) {
@@ -69,10 +92,13 @@ async function loadScene(sceneIndex) {
     return;
   }
 
-  setGameVariable('currentScene', 0); //Set to 0 for now.
+  // Save the current scene index to game state
+  setGameVariable('currentScene', sceneIndex);
 
   nameTabEl.innerText = scene.name || "Sight";
-  updateNameStyles(scene.nameStyle);
+  // Merge chapter defaults with scene-specific styles when calling update
+  const mergedNameStyle = Object.assign({}, chapterDefaults.nameStyle || {}, scene.nameStyle || {});
+  updateNameStyles(mergedNameStyle);
 
   if (scene.character) {
     characterEl.style.display = "block";
@@ -89,7 +115,8 @@ async function loadScene(sceneIndex) {
       }, { once: true });
     }
 
-  updateTextBoxStyles(scene.textBoxStyle);
+  const mergedTextBoxStyle = Object.assign({}, chapterDefaults.textBoxStyle || {}, scene.textBoxStyle || {});
+  updateTextBoxStyles(mergedTextBoxStyle);
 
   choicesEl.innerHTML = "";
 
@@ -98,7 +125,7 @@ async function loadScene(sceneIndex) {
 
   // Display text with typing effect
   
-  const typingSound = scene.typingSound || "Retro_Single_v2_wav.mp3";
+  const typingSound = scene.typingSound || chapterDefaults.typingSound || "Retro_Single_v2_wav.mp3";
   await typeText(scene.text, typingSound);
 
   // Update background after typing, if specified
@@ -110,8 +137,6 @@ async function loadScene(sceneIndex) {
   showChoices(scene.choices);
 }
 
-// Background Music Handling
-let musicIsplaying = true;
 // Function to handle background music
 function updateBackgroundMusic(newTrack) {
   if (!newTrack) return; // If no new track, keep the current one playing
@@ -133,7 +158,7 @@ function updateBackgroundMusic(newTrack) {
   backgroundMusic.volume = 0.5; // Adjust volume as needed
   backgroundMusic.volume = parseFloat(document.getElementById('pause-volume-slider').value) || 0.5; // Sync with slider
   PauseMenu.initMusicControls(backgroundMusic); // Pass new music to PauseMenu
-  if (musicIsplaying === true) {
+  if (musicIsPlaying === true) {
     backgroundMusic.play();
   }
 }
@@ -176,7 +201,8 @@ function typeText(htmlString, soundFile) {
     const typingAudio = cachedAudio[soundFile];
 
     function playTypingSound() {
-      if (typingAudio.readyState >= 3) {
+      if (gamePaused) return; // don't play while paused
+      if (typingAudio && typingAudio.readyState >= 3) {
         typingAudio.currentTime = 0;
         typingAudio.play().catch((error) => {
           console.error("Typing sound playback error:", error);
@@ -199,6 +225,8 @@ function typeText(htmlString, soundFile) {
         let i = 0;
 
         typingInterval = setInterval(() => {
+          if (gamePaused) return; // suspend progress while paused
+
           const currentChar = text[i];
           textEl.innerHTML += currentChar;
 
@@ -222,6 +250,7 @@ function typeText(htmlString, soundFile) {
     typeNode();
 
     function skipTypingEffect() {
+      if (gamePaused) return; // don't allow skipping while paused
       if (!skipTyping) {
         skipTyping = true;
         clearInterval(typingInterval);
@@ -231,16 +260,30 @@ function typeText(htmlString, soundFile) {
       }
     }
 
+    // Use named listeners so they can be removed correctly
+    function onSkipKey(event) {
+      if (event.key === " ") skipTypingEffect();
+    }
+
+    function onGamePaused() {
+      // Pause typing audio immediately when game is paused
+      try { if (typingAudio && !typingAudio.paused) typingAudio.pause(); } catch (e) { /* ignore */ }
+    }
+
+    function onGameResumed() {
+      // Nothing special required here; typing will resume because intervals continue
+    }
+
     function addSkipListeners() {
-      document.addEventListener("keydown", (event) => {
-        if (event.key === " ") skipTypingEffect();
-      });
+      document.addEventListener("keydown", onSkipKey);
+      document.addEventListener('game:paused', onGamePaused);
+      document.addEventListener('game:resumed', onGameResumed);
     }
 
     function removeSkipListeners() {
-      document.removeEventListener("keydown", (event) => {
-        if (event.key === " ") skipTypingEffect();
-      });
+      document.removeEventListener("keydown", onSkipKey);
+      document.removeEventListener('game:paused', onGamePaused);
+      document.removeEventListener('game:resumed', onGameResumed);
     }
 
     addSkipListeners();
@@ -301,6 +344,7 @@ function showChoices(choices, currentSceneIndex) {
 function handleAction(action, actionTarget) {
   switch (action) {
     case "mainMenu":
+      setGameVariable('currentScene', 0);
       const currentState = state.get('gameState') || {};
       state.set('gameState', currentState);
       window.open("index.html", "_blank");
@@ -330,6 +374,10 @@ function initializeAudioPlayback() {
     backgroundMusic.play().catch(() => {
       console.warn("Background music blocked, retrying after user interaction.");
     });
+    // If the game is currently paused, ensure music does not keep playing after initialization
+    if (gamePaused) {
+      try { if (!backgroundMusic.paused) backgroundMusic.pause(); } catch (e) { /* ignore */ }
+    }
   }
 }
 
@@ -399,11 +447,51 @@ async function loadScenesFromFile(filename, startIndex = 0) {
     }
     const response = await fetch(filename);
     const loadedScenes = await response.json();
-    if (!Array.isArray(loadedScenes) || loadedScenes.length === 0) {
-      console.error("Loaded scenes file is empty or not an array:", filename);
+
+    // Support two shapes for scene files for backward compatibility:
+    // 1) An array of scenes (original behavior)
+    // 2) An object: { defaults: { ... }, scenes: [ ... ] }
+    if (Array.isArray(loadedScenes)) {
+      chapterDefaults = {};
+      scenes = loadedScenes;
+    } else if (loadedScenes && Array.isArray(loadedScenes.scenes)) {
+      chapterDefaults = loadedScenes.defaults || {};
+      scenes = loadedScenes.scenes;
+    } else {
+      console.error("Loaded scenes file has an unsupported shape:", filename);
       return;
     }
-    scenes = loadedScenes;
+
+    if (!Array.isArray(scenes) || scenes.length === 0) {
+      console.error("Loaded scenes file is empty or scenes array is invalid:", filename);
+      return;
+    }
+
+    // Merge top-level chapter defaults into individual scenes where values are missing.
+    // For style objects like nameStyle / textBoxStyle, do a shallow merge so scene overrides apply.
+    function mergeDefaultsIntoScene(scene, defaults) {
+      if (!defaults || typeof defaults !== 'object') return scene;
+      const merged = Object.assign({}, defaults, scene || {});
+
+      // For nested style objects, do shallow merge so individual scene keys override defaults
+      if (defaults.nameStyle || scene.nameStyle) {
+        merged.nameStyle = Object.assign({}, defaults.nameStyle || {}, scene.nameStyle || {});
+      }
+      if (defaults.textBoxStyle || scene.textBoxStyle) {
+        merged.textBoxStyle = Object.assign({}, defaults.textBoxStyle || {}, scene.textBoxStyle || {});
+      }
+
+      // Ensure other defaults like backgroundMusic, typingSound, beforeBackground, afterBackground
+      ['backgroundMusic', 'typingSound', 'beforeBackground', 'afterBackground', 'character'].forEach((k) => {
+        if (merged[k] === undefined && defaults[k] !== undefined) {
+          merged[k] = defaults[k];
+        }
+      });
+
+      return merged;
+    }
+
+    scenes = scenes.map(s => mergeDefaultsIntoScene(s, chapterDefaults));
     // Save the filename so it can persist in the game state
     setGameVariable('scenesFile', filename);
     pauseButton.classList.add("active");
@@ -413,6 +501,11 @@ async function loadScenesFromFile(filename, startIndex = 0) {
   } catch (error) {
     console.error("Error loading scenes from file:", filename, error);
   }
+}
+
+// Convenience wrapper to switch chapters by filename
+function setChapter(filename, startIndex = 0) {
+  setScenesFile(filename, startIndex);
 }
 
 // Utility to switch scenes file at runtime. It persists the filename in game state and reloads.
@@ -445,7 +538,7 @@ async function initializeGame() {
 
     // Decide default scenes file based on whether eyeCaught is set in the saved state.
     // If eyeCaught is true, use scenes.json; otherwise use scenesOG.json.
-    const defaultScenesFile = (savedState && savedState.eyeCaught) ? 'scenes.json' : 'scenesOG.json';
+    const defaultScenesFile = (savedState && savedState.eyeCaught) ? 'firstDayBackB.json' : 'firstDayBackA.json';
 
     // If a scenesFile was explicitly saved in the gameState use it; otherwise use the default above.
     const scenesFileFromState = getGameVariable('scenesFile') || defaultScenesFile;
